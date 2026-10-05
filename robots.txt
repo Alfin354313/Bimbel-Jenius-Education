@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bimbel-jenius-education.vercel.app/sitemap.xml
