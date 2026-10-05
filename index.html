@@ -138,7 +138,7 @@ footer{padding:28px 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
 .gallery-card{grid-column:span 4;min-height:220px;background:var(--bg);border:2px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:.2s ease;overflow:hidden}
 .gallery-card:hover{transform:translateY(-5px);border-color:var(--ink);box-shadow:7px 7px 0 var(--ink)}
 .gallery-main{grid-column:span 6;min-height:300px;background:var(--hl)}
-.gallery-art{height:118px;border-radius:18px;background:var(--card);border:2px solid var(--ink);display:grid;place-items:center;font-size:3.4rem;margin-bottom:18px}
+.gallery-art{height:118px;border-radius:18px;background:var(--card);border:2px solid var(--ink);overflow:hidden;margin-bottom:18px}.gallery-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}.gallery-card:hover .gallery-art img{transform:scale(1.04)}
 .gallery-card strong{font-family:"Bricolage Grotesque",sans-serif;font-size:1.2rem}.gallery-card p{margin:5px 0 0;color:var(--muted)}
 .gallery-note{margin-top:18px;padding:13px 16px;border-radius:14px;background:var(--bg);border:1px dashed var(--line);color:var(--muted);font-size:.9rem}
 @media(max-width:760px){.gallery-heading{display:grid;gap:12px}.gallery-card,.gallery-main{grid-column:span 12;min-height:220px}}
@@ -316,23 +316,23 @@ section{scroll-margin-top:18px}
     </div>
     <div class="gallery-grid">
       <article class="gallery-card gallery-main">
-        <div class="gallery-art">📚</div>
+        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=85" alt="Siswa sedang belajar bersama pengajar"></div>
         <div><strong>Fokus memahami materi</strong><p>Belajar tidak hanya mengejar hafalan, tetapi membantu siswa memahami konsep.</p></div>
       </article>
       <article class="gallery-card">
-        <div class="gallery-art">🧑‍🏫</div>
+        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85" alt="Siswa berdiskusi dan belajar bersama"></div>
         <div><strong>Pengajar siap membantu</strong><p>Siswa punya ruang untuk bertanya ketika menemukan materi yang sulit.</p></div>
       </article>
       <article class="gallery-card">
-        <div class="gallery-art">✏️</div>
+        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=85" alt="Aktivitas belajar di ruang kelas"></div>
         <div><strong>Latihan & tugas sekolah</strong><p>Materi dapat diperdalam melalui latihan dan pendampingan tugas.</p></div>
       </article>
       <article class="gallery-card">
-        <div class="gallery-art">🎯</div>
+        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=85" alt="Siswa mengerjakan tugas dengan pendampingan"></div>
         <div><strong>Target belajar lebih jelas</strong><p>Kebutuhan anak dibahas sejak awal agar proses belajar lebih terarah.</p></div>
       </article>
     </div>
-    <div class="gallery-note">💡 Foto kegiatan asli Jenius Edu dapat ditambahkan kapan saja agar bagian ini semakin personal.</div>
+    <div class="gallery-note">💡 Suasana belajar dirancang agar siswa merasa nyaman, aktif bertanya, dan lebih percaya diri.</div>
   </div>
 </section>
 
