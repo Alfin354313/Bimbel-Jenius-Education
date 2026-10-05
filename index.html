@@ -37,12 +37,13 @@ section{padding:64px 0}
 h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px}
 .lead{color:var(--muted);max-width:56ch;margin:0 0 32px}
 .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.prog{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:22px}
-.prog:nth-child(2){border-radius:28px 6px 28px 6px}
-.prog:nth-child(3){border-radius:6px 28px 6px 28px}
-.prog h3{font-size:1.4rem;margin-bottom:4px}
-.prog .lv{font-weight:700;color:var(--accent);font-size:.9rem;margin-bottom:10px}
-.prog ul{padding-left:18px;margin:0;color:var(--muted)}
+.prog{background:var(--card);border:2px solid var(--ink);border-radius:22px;padding:26px;position:relative;overflow:hidden;transition:.2s ease}
+.prog:hover{transform:translateY(-5px);box-shadow:7px 7px 0 var(--ink)}
+.prog:nth-child(2){border-radius:22px}.prog:nth-child(3){border-radius:22px}
+.prog .icon{width:52px;height:52px;border-radius:16px;background:var(--hl);display:grid;place-items:center;font-size:1.6rem;margin-bottom:18px;border:2px solid var(--ink)}
+.prog h3{font-size:1.5rem;margin-bottom:4px}.prog .lv{font-weight:800;color:var(--accent);font-size:.9rem;margin-bottom:12px}
+.prog ul{padding-left:0;margin:0;color:var(--muted);list-style:none}.prog li{margin:8px 0}.prog li::before{content:"✓";font-weight:800;color:var(--accent);margin-right:8px}
+.prog .price{margin:18px 0 14px}.prog .mini-cta{display:inline-block;font-weight:800;text-decoration:none;border-bottom:2px solid var(--accent)}.prog .mini-cta:hover{color:var(--accent)}
 .band{background:var(--band);color:var(--bandink)}
 .band .lead{color:#CFE6FA}
 .why{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
@@ -103,9 +104,9 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white
     <h2>Program belajar</h2>
     <p class="lead">Pilih jenjang yang sesuai. Materi mengikuti kurikulum sekolah dan kebutuhan tiap anak.</p>
     <div class="grid">
-      <article class="prog"><h3>Kelas SD</h3><div class="lv">Kelas 1–6</div><ul><li>Matematika dan Bahasa Inggris</li><li>Calistung untuk kelas awal</li><li>Bantuan tugas dan persiapan ulangan</li></ul><p class="price">Rp250.000<small> / bulan</small></p></article>
-      <article class="prog"><h3>Kelas SMP</h3><div class="lv">Kelas 7–9</div><ul><li>Matematika dan Bahasa Inggris</li><li>Fisika dasar</li><li>Bantuan tugas dan persiapan ulangan</li></ul><p class="price">Rp300.000<small> / bulan</small></p></article>
-      <article class="prog"><h3>Kelas SMA</h3><div class="lv">Kelas 10–12</div><ul><li>Matematika, Fisika, dan Kimia</li><li>Bahasa Inggris</li><li>Bantuan tugas dan persiapan ulangan</li></ul><p class="price">Rp350.000<small> / bulan</small></p></article>
+      <article class="prog"><div class="icon">📖</div><h3>Kelas SD</h3><div class="lv">Kelas 1–6</div><ul><li>Matematika & Bahasa Inggris</li><li>Calistung untuk kelas awal</li><li>Bantuan tugas & persiapan ulangan</li></ul><p class="price">Rp250.000<small> / bulan</small></p><a class="mini-cta" href="#daftar">Tanyakan program →</a></article>
+      <article class="prog"><div class="icon">📘</div><h3>Kelas SMP</h3><div class="lv">Kelas 7–9</div><ul><li>Matematika & Bahasa Inggris</li><li>Fisika dasar</li><li>Bantuan tugas & persiapan ulangan</li></ul><p class="price">Rp300.000<small> / bulan</small></p><a class="mini-cta" href="#daftar">Tanyakan program →</a></article>
+      <article class="prog"><div class="icon">🎓</div><h3>Kelas SMA</h3><div class="lv">Kelas 10–12</div><ul><li>Matematika, Fisika & Kimia</li><li>Bahasa Inggris</li><li>Bantuan tugas & persiapan ulangan</li></ul><p class="price">Rp350.000<small> / bulan</small></p><a class="mini-cta" href="#daftar">Tanyakan program →</a></article>
     </div>
     <p class="lead" style="margin:24px 0 0">Ada tugas atau ulangan mendadak dari sekolah? Bawa saja soalnya, kami bantu pahami dan kerjakan bersama.</p>
   </div>
