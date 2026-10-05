@@ -56,7 +56,14 @@ label{font-weight:700;font-size:.95rem;display:grid;gap:6px}
 input,select{font:inherit;padding:12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 .contact{display:grid;gap:36px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start}
 footer{padding:28px 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
-@media (max-width:560px){nav a:not(.btn){display:none}}
+@media (max-width:560px){
+  header{padding:12px 0}
+  .logo{font-size:1.15rem}
+  .logo img{width:38px;height:38px}
+  nav .btn{padding:8px 13px!important;margin-left:4px!important;font-size:.85rem}
+  .hero{padding:42px 0 58px}
+  .hero-visual{box-shadow:6px 6px 0 var(--ink)}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
 .rev{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:20px}
