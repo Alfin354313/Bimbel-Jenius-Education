@@ -46,8 +46,11 @@ h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px}
 .prog .price{margin:18px 0 14px}.prog .mini-cta{display:inline-block;font-weight:800;text-decoration:none;border-bottom:2px solid var(--accent)}.prog .mini-cta:hover{color:var(--accent)}
 .band{background:var(--band);color:var(--bandink)}
 .band .lead{color:#CFE6FA}
-.why{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.why h3{font-size:1.25rem;margin-bottom:6px;color:var(--hl)}
+.why{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:28px}
+.why-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:22px;transition:.2s ease}
+.why-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.12);box-shadow:6px 6px 0 rgba(255,255,255,.12)}
+.why-card .why-icon{width:48px;height:48px;border-radius:15px;background:var(--hl);color:#15436B;display:grid;place-items:center;font-size:1.35rem;margin-bottom:16px}
+.why h3{font-size:1.18rem;margin-bottom:7px;color:#fff}
 .why p{margin:0;color:#E3F0FC}
 .steps{counter-reset:s;display:grid;gap:14px;padding:0;list-style:none;max-width:640px}
 .steps li{counter-increment:s;display:flex;gap:16px;align-items:flex-start}
@@ -117,10 +120,10 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white
     <h2>Kenapa belajar di Jenius Edu</h2>
     <p class="lead">Kami fokus pada hal yang paling berpengaruh: perhatian pada setiap siswa.</p>
     <div class="why">
-      <div><h3>Kelas kecil</h3><p>Setiap kelas berisi sedikit siswa, jadi pertanyaan selalu sempat dijawab.</p></div>
-      <div><h3>Pengajar berpengalaman</h3><p>Pengajar menjelaskan dengan cara yang mudah dipahami sesuai usia siswa.</p></div>
-      <div><h3>Laporan untuk orang tua</h3><p>Perkembangan belajar anak disampaikan secara berkala.</p></div>
-      <div><h3>Jadwal fleksibel</h3><p>Pilih waktu belajar yang cocok dengan jadwal sekolah anak.</p></div>
+      <article class="why-card"><div class="why-icon">👥</div><h3>Kelas kecil</h3><p>Jumlah siswa lebih terbatas agar anak punya ruang untuk bertanya dan mendapat perhatian.</p></article>
+      <article class="why-card"><div class="why-icon">🧑‍🏫</div><h3>Pengajar komunikatif</h3><p>Materi dijelaskan dengan bahasa yang sederhana dan menyesuaikan kebutuhan siswa.</p></article>
+      <article class="why-card"><div class="why-icon">📈</div><h3>Perkembangan terpantau</h3><p>Orang tua mendapat informasi perkembangan belajar anak secara berkala.</p></article>
+      <article class="why-card"><div class="why-icon">🕒</div><h3>Jadwal fleksibel</h3><p>Waktu belajar dapat disesuaikan dengan jadwal sekolah dan aktivitas anak.</p></article>
     </div>
   </div>
 </section>
