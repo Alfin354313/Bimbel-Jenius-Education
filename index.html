@@ -189,7 +189,7 @@ var WA="628164855461"; // ganti dengan nomor WhatsApp Anda (awali 62, tanpa +)
 document.getElementById("f").addEventListener("submit",function(e){
   e.preventDefault();
   var d=new FormData(e.target);
-  var t="Halo Jenius Edu, saya "+d.get("nama")+". Saya ingin mendaftar kelas percobaan jenjang "+d.get("jenjang")+" ("+d.get("mapel")+").";
+  var t="Halo Jenius Edu, saya "+d.get("nama")+". Saya ingin konsultasi kelas percobaan untuk anak dengan detail:\n- Jenjang: "+d.get("jenjang")+"\n- Kelas: "+d.get("kelas")+"\n- Mata pelajaran: "+d.get("mapel")+"\n- Kebutuhan: "+d.get("kebutuhan")+"\n- Preferensi jadwal: "+(d.get("jadwal")||"Belum ditentukan");
   window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank");
 });
 
