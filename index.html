@@ -37,7 +37,7 @@ nav a:hover{text-decoration:underline}
 .btn:hover{transform:translateY(-2px);box-shadow:0 4px 0 #15436B}
 .btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.hero{padding:56px 0 72px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px;background-position:-1px -1px}
+.hero-photo{position:relative;width:min(100%,500px);border:2px solid var(--ink);border-radius:28px;overflow:hidden;background:var(--card);box-shadow:10px 10px 0 var(--ink);transform:rotate(1deg)}.hero-photo img{display:block;width:100%;height:370px;object-fit:cover}.hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(21,67,107,.78) 100%);pointer-events:none}.hero-photo-label{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;color:#fff;display:flex;align-items:end;justify-content:space-between;gap:12px}.hero-photo-label strong{font-size:1.15rem}.hero-photo-label span{font-size:.75rem;font-weight:700;text-align:right;opacity:.92}.hero .hero-copy>*{margin-left:0}.hero .hero-copy .eyebrow{padding:0;background:transparent}.hero .hero-copy h1,.hero .hero-copy p,.hero .hero-copy .cta{background:var(--bg);padding:0}.hero .hero-copy .cta{margin-top:2px}.hero .hero-copy .hero-trust{padding:0;background:transparent}.hero .hero-trust span{padding:0;background:transparent}.hero .hero-visual{background:transparent;width:100%}@media(max-width:760px){.hero{padding:42px 0 58px}.hero-photo{transform:none}.hero-photo img{height:300px}.hero-photo-label{display:block}.hero-photo-label span{display:block;text-align:left;margin-top:3px}.hero-float{right:4px;bottom:16px}}.hero{padding:56px 0 72px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px;background-position:-1px -1px}
 .hero .wrap{display:grid;gap:32px}.hero-grid{display:grid!important;grid-template-columns:1.08fr .92fr;align-items:center;gap:44px}
 .hero-copy{display:grid;gap:18px}
 .hero-copy>*{background:var(--bg);width:fit-content;padding:4px 8px;margin-left:-8px}
@@ -229,12 +229,23 @@ section{scroll-margin-top:18px}
 </div>
 
 <div class="hero">
-  <div class="wrap">
-    <h1>Belajar jadi <mark>lebih paham</mark>, bukan sekadar hafal.</h1>
-    <p>Bimbingan belajar untuk siswa SD, SMP, dan SMA dengan kelas kecil dan pengajar yang sabar menjelaskan sampai anak benar-benar mengerti.</p>
-    <div class="cta">
-      <a class="btn" href="#daftar">Daftar kelas percobaan</a>
-      <a class="btn alt" href="#program">Lihat program</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">BIMBINGAN BELAJAR DI CIMANGGIS</span>
+      <h1>Belajar jadi <mark>lebih paham</mark>, bukan sekadar hafal.</h1>
+      <p>Bimbingan belajar untuk siswa SD, SMP, dan SMA dengan kelas kecil dan pengajar yang sabar menjelaskan sampai anak benar-benar mengerti.</p>
+      <div class="cta">
+        <a class="btn" href="#daftar">Daftar kelas percobaan</a>
+        <a class="btn alt" href="#program">Lihat program</a>
+      </div>
+      <div class="hero-trust"><span>✓ Kelas kecil</span><span>✓ Pengajar komunikatif</span><span>✓ Cimanggis, Depok</span></div>
+    </div>
+    <div class="hero-visual" aria-label="Suasana belajar Jenius Edu">
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=85" alt="Suasana guru dan siswa sedang belajar di kelas">
+        <div class="hero-photo-label"><strong>Suasana belajar</strong><span>Nyaman • Interaktif • Terarah</span></div>
+      </div>
+      <div class="hero-float">📚 SD • SMP • SMA</div>
     </div>
   </div>
 </div>
