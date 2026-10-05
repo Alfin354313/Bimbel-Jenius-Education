@@ -69,7 +69,13 @@ section{padding:64px 0}
 h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px}
 .lead{color:var(--muted);max-width:56ch;margin:0 0 32px}
 .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.prog{background:var(--card);border:2px solid var(--ink);border-radius:22px;padding:26px;position:relative;overflow:hidden;transition:.2s ease}
+.prog{background:var(--card);border:2px solid var(--ink);border-radius:22px;padding:24px;position:relative;overflow:hidden;transition:.2s ease;display:flex;flex-direction:column;min-height:100%}
+.program-grid{align-items:stretch}
+.prog-label{display:inline-flex;align-self:flex-start;padding:6px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:.78rem;font-weight:800;color:var(--accent);margin-bottom:16px}
+.price-box{margin:18px 0 16px;padding:14px 16px;border-radius:16px;background:var(--bg);border:2px solid var(--line);display:grid;gap:2px}
+.price-box span,.price-box small{font-size:.78rem;color:var(--muted)}
+.price-box strong{font-family:"Bricolage Grotesque",sans-serif;font-size:1.65rem;line-height:1.1}
+.prog .mini-cta{margin-top:auto;align-self:flex-start;padding:8px 0}
 .prog:hover{transform:translateY(-5px);box-shadow:7px 7px 0 var(--ink)}
 .prog:nth-child(2){border-radius:22px}.prog:nth-child(3){border-radius:22px}
 .prog .icon{width:52px;height:52px;border-radius:16px;background:var(--hl);display:grid;place-items:center;font-size:1.6rem;margin-bottom:18px;border:2px solid var(--ink)}
@@ -176,10 +182,10 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white
   <div class="wrap">
     <h2>Program belajar</h2>
     <p class="lead">Pilih jenjang yang sesuai. Materi mengikuti kurikulum sekolah dan kebutuhan tiap anak.</p>
-    <div class="grid">
-      <article class="prog"><div class="icon">📖</div><h3>Kelas SD</h3><div class="lv">Kelas 1–6</div><ul><li>Matematika & Bahasa Inggris</li><li>Calistung untuk kelas awal</li><li>Bantuan tugas & persiapan ulangan</li></ul><p class="price">Rp250.000<small> / bulan</small></p><a class="mini-cta" href="#daftar">Tanyakan program →</a></article>
-      <article class="prog"><div class="icon">📘</div><h3>Kelas SMP</h3><div class="lv">Kelas 7–9</div><ul><li>Matematika & Bahasa Inggris</li><li>Fisika dasar</li><li>Bantuan tugas & persiapan ulangan</li></ul><p class="price">Rp300.000<small> / bulan</small></p><a class="mini-cta" href="#daftar">Tanyakan program →</a></article>
-      <article class="prog"><div class="icon">🎓</div><h3>Kelas SMA</h3><div class="lv">Kelas 10–12</div><ul><li>Matematika, Fisika & Kimia</li><li>Bahasa Inggris</li><li>Bantuan tugas & persiapan ulangan</li></ul><p class="price">Rp350.000<small> / bulan</small></p><a class="mini-cta" href="#daftar">Tanyakan program →</a></article>
+    <div class="grid program-grid">
+      <article class="prog"><div class="prog-label">SD • Kelas 1–6</div><div class="icon">📖</div><h3>Kelas SD</h3><div class="lv">Fondasi belajar & pendampingan tugas</div><ul><li>Matematika & Bahasa Inggris</li><li>Calistung untuk kelas awal</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp250.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
+      <article class="prog"><div class="prog-label">SMP • Kelas 7–9</div><div class="icon">📘</div><h3>Kelas SMP</h3><div class="lv">Pendalaman materi & persiapan ulangan</div><ul><li>Matematika & Bahasa Inggris</li><li>Fisika dasar</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp300.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
+      <article class="prog"><div class="prog-label">SMA • Kelas 10–12</div><div class="icon">🎓</div><h3>Kelas SMA</h3><div class="lv">Pendalaman pelajaran & persiapan ujian</div><ul><li>Matematika, Fisika & Kimia</li><li>Bahasa Inggris</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp350.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
     </div>
     <p class="lead" style="margin:24px 0 0">Ada tugas atau ulangan mendadak dari sekolah? Bawa saja soalnya, kami bantu pahami dan kerjakan bersama.</p>
   </div>
@@ -262,11 +268,17 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white
       <p><strong>Alamat</strong><br>Jl. Pondok Pesantren 63F, Pasir Gunung Selatan, Depok</p>
       <p><strong>Jam layanan</strong><br>Senin–Sabtu, 13.00–20.00 WIB</p>
     </div>
-    <form id="f">
-      <label>Nama orang tua / siswa<input name="nama" required autocomplete="name"></label>
+    <form id="f" class="lead-form">
+      <div class="form-title">💬 Ceritakan kebutuhan belajar anak</div>
+      <p class="form-subtitle">Isi beberapa data singkat agar konsultasi di WhatsApp lebih cepat.</p>
+      <label>Nama orang tua / siswa<input name="nama" required autocomplete="name" placeholder="Nama Anda"></label>
       <label>Jenjang<select name="jenjang"><option>SD</option><option>SMP</option><option>SMA</option></select></label>
-      <label>Kelas dan mata pelajaran<input name="mapel" placeholder="Contoh: kelas 8, Matematika" required></label>
-      <button class="btn" type="submit">Kirim lewat WhatsApp</button>
+      <label>Kelas<input name="kelas" required placeholder="Contoh: Kelas 8"></label>
+      <label>Mata pelajaran<input name="mapel" required placeholder="Contoh: Matematika"></label>
+      <label>Kebutuhan belajar<select name="kebutuhan"><option>Memahami materi</option><option>Persiapan ulangan / ujian</option><option>Bantuan tugas sekolah</option><option>Meningkatkan nilai</option><option>Lainnya</option></select></label>
+      <label>Preferensi jadwal <span class="optional">(opsional)</span><input name="jadwal" placeholder="Contoh: sore hari"></label>
+      <button class="btn form-submit" type="submit">💬 Konsultasi lewat WhatsApp</button>
+      <p class="form-note">Tanpa pembayaran online. Anda akan diarahkan ke WhatsApp untuk konsultasi.</p>
     </form>
   </div>
 </section>
