@@ -52,6 +52,11 @@ h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px}
 .why-card .why-icon{width:48px;height:48px;border-radius:15px;background:var(--hl);color:#15436B;display:grid;place-items:center;font-size:1.35rem;margin-bottom:16px}
 .why h3{font-size:1.18rem;margin-bottom:7px;color:#fff}
 .why p{margin:0;color:#E3F0FC}
+.review-intro{max-width:700px;margin:0 auto 24px;text-align:center}
+.reviews-empty{border:1px dashed #B8CDE0;border-radius:20px;padding:28px;text-align:center;background:#F8FBFE}
+.reviews-empty .review-icon{font-size:2rem;margin-bottom:8px}
+.reviews-empty strong{display:block;font-size:1.1rem;margin-bottom:6px}
+.review-note{color:#5B6B7A;margin:0}
 .steps{counter-reset:s;display:grid;gap:14px;padding:0;list-style:none;max-width:640px}
 .steps li{counter-increment:s;display:flex;gap:16px;align-items:flex-start}
 .steps li::before{content:counter(s);flex:none;width:36px;height:36px;border-radius:50%;background:var(--hl);color:#15436B;font-weight:800;display:grid;place-items:center}
@@ -143,11 +148,17 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white
 
 <section id="ulasan">
   <div class="wrap">
-    <h2>Kata orang tua dan siswa</h2>
-    <p class="lead">Ulasan dari keluarga yang sudah belajar bersama kami.</p>
+    <div class="review-intro">
+      <h2>Kata orang tua dan siswa</h2>
+      <p class="lead">Pengalaman belajar yang nyata membantu orang tua mengenal Jenius Edu sebelum memilih program.</p>
+    </div>
     <div class="grid" id="revs"></div>
-    <p id="norev" class="lead">Ulasan pertama akan muncul di sini.</p>
-    <p><a class="btn alt" id="sendrev" href="#">Tulis ulasan lewat WhatsApp</a></p>
+    <div id="norev" class="reviews-empty">
+      <div class="review-icon">💬</div>
+      <strong>Ulasan dari keluarga Jenius Edu akan tampil di sini.</strong>
+      <p class="review-note">Sudah pernah belajar bersama kami? Bagikan pengalaman Anda melalui WhatsApp.</p>
+    </div>
+    <p style="text-align:center;margin-top:22px"><a class="btn alt" id="sendrev" href="#">💬 Tulis ulasan lewat WhatsApp</a></p>
   </div>
 </section>
 
