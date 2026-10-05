@@ -165,7 +165,35 @@ footer{padding:28px 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
 .sm{padding:5px 12px;font-size:.85rem;border-width:1px}
 .ok{color:#1a8f5f;font-weight:700}.no{color:#c0392b;font-weight:700}
-.price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.6rem;margin:16px 0 0}.price small{font-size:.9rem;font-weight:600;color:var(--muted)}</style>
+.price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.6rem;margin:16px 0 0}.price small{font-size:.9rem;font-weight:600;color:var(--muted)}
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:100;display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;border:2px solid var(--ink);border-radius:999px;padding:10px 16px;text-decoration:none;font-weight:800;box-shadow:6px 6px 0 var(--ink);transition:.2s ease}
+.wa-float:hover{transform:translateY(-3px)}
+.wa-float-icon{width:34px;height:34px;display:grid;place-items:center;background:#fff;color:#25D366;border-radius:50%;font-size:1.1rem}
+section{scroll-margin-top:18px}
+@media(max-width:760px){
+  .wrap{padding:0 16px}
+  header{gap:12px;align-items:center}
+  nav{display:flex;align-items:center;gap:4px;overflow-x:auto;white-space:nowrap;max-width:72vw;padding-bottom:4px;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav a{margin-left:0;padding:6px 7px;font-size:.86rem}
+  nav .btn{flex:none!important}
+  section{padding:52px 0}
+  .hero .wrap>*{width:auto;max-width:100%}
+  .hero h1{font-size:clamp(2.25rem,12vw,3.4rem)}
+  .hero p{font-size:1.03rem}
+  .cta{display:grid;grid-template-columns:1fr;width:100%}
+  .cta .btn{text-align:center;width:100%}
+  .contact{grid-template-columns:1fr;gap:28px}
+  form{max-width:none;padding:20px}
+  .lead-form{box-shadow:5px 5px 0 var(--ink)}
+  .gallery-heading{align-items:start}
+  .trust-points{gap:8px}
+  .trust-points span{font-size:.82rem}
+  .wa-float{right:14px;bottom:14px;padding:8px 11px;box-shadow:4px 4px 0 var(--ink)}
+  .wa-float-text{font-size:.82rem}
+}
+@media(max-width:390px){.wa-float-text{display:none}.wa-float{width:52px;height:52px;padding:7px;justify-content:center}.wa-float-icon{width:34px;height:34px}.logo span{font-size:1rem}}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -361,6 +389,8 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white
 
 
 
+
+<a class="wa-float" href="https://wa.me/628164855461?text=Halo%20Jenius%20Edu%2C%20saya%20ingin%20konsultasi%20program%20belajar." target="_blank" rel="noopener" aria-label="Chat WhatsApp Jenius Edu"><span class="wa-float-icon">💬</span><span class="wa-float-text">Konsultasi WhatsApp</span></a>
 
 <footer><div class="wrap">© 2026 Jenius Edu. Bimbingan belajar SD, SMP, dan SMA.</div></footer>
 
