@@ -112,6 +112,8 @@ h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px}
 form{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:26px;display:grid;gap:14px;max-width:520px}
 label{font-weight:700;font-size:.95rem;display:grid;gap:6px}
 input,select{font:inherit;padding:12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.signup-section{background:var(--band);color:#fff}.signup-section .lead{color:#DDECF9}.signup-copy{display:grid;gap:10px}.signup-copy h2{color:#fff;max-width:620px}.contact-points{display:grid;gap:12px;margin-top:12px}.contact-points>div{display:flex;gap:12px;align-items:flex-start}.contact-points>div>span{width:38px;height:38px;display:grid;place-items:center;background:var(--hl);color:#15436B;border:2px solid var(--ink);border-radius:12px;flex:none}.contact-points strong{display:block}.contact-points p{margin:2px 0 0;color:#DDECF9}.signup-section .lead-form{background:var(--card);color:var(--ink);border-color:var(--ink)}
+
 .contact{display:grid;gap:36px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start}
 .lead-form{box-shadow:8px 8px 0 var(--ink)}
 .form-title{font-family:"Bricolage Grotesque",sans-serif;font-size:1.35rem;font-weight:800}
@@ -330,16 +332,20 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white
   </div>
 </section>
 
-<section id="daftar">
+<section id="daftar" class="signup-section">
   <div class="wrap contact">
-    <div>
-      <h2>Daftar sekarang</h2>
-      <p class="lead">Isi formulir, lalu pesan akan terbuka di WhatsApp kami.</p>
-      <p><strong>Alamat</strong><br>Jl. Pondok Pesantren 63F, Pasir Gunung Selatan, Depok</p>
-      <p><strong>Jam layanan</strong><br>Senin–Sabtu, 13.00–20.00 WIB</p>
+    <div class="signup-copy">
+      <span class="section-kicker">🚀 Langkah berikutnya</span>
+      <h2>Siap membantu anak belajar lebih percaya diri?</h2>
+      <p class="lead">Ceritakan kebutuhan belajar anak. Kami akan membantu memilih program dan jadwal yang paling sesuai melalui WhatsApp.</p>
+      <div class="contact-points">
+        <div><span>📍</span><div><strong>Lokasi</strong><p>Jl. Pondok Pesantren 63F, Pasir Gunung Selatan, Depok</p></div></div>
+        <div><span>🕐</span><div><strong>Jam layanan</strong><p>Senin–Sabtu, 13.00–20.00 WIB</p></div></div>
+        <div><span>💬</span><div><strong>Proses mudah</strong><p>Isi formulir → konsultasi WhatsApp → tentukan program & jadwal.</p></div></div>
+      </div>
     </div>
     <form id="f" class="lead-form">
-      <div class="form-title">💬 Ceritakan kebutuhan belajar anak</div>
+      <div class="form-title">💬 Mulai konsultasi</div>
       <p class="form-subtitle">Isi beberapa data singkat agar konsultasi di WhatsApp lebih cepat.</p>
       <label>Nama orang tua / siswa<input name="nama" required autocomplete="name" placeholder="Nama Anda"></label>
       <label>Jenjang<select name="jenjang"><option>SD</option><option>SMP</option><option>SMA</option></select></label>
