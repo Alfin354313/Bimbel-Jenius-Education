@@ -211,7 +211,7 @@ section{scroll-margin-top:18px}
 #revs .rev figcaption b{font-size:.94rem;color:#113E68}
 #revs .rev figcaption small{color:var(--muted);font-size:.8rem;line-height:1.45}
 #revs .rev-rating{color:#C57912;letter-spacing:2px;font-size:1rem;line-height:1.2}
-#revs .rev-rating:empty{display:none}
+#revs .rev-rating{min-height:24px;display:flex;align-items:center}#revs .rev-label{display:inline-flex;align-items:center;background:#EFF6FC;border:1px solid #D5E6F4;border-radius:999px;color:#275D84;font-size:.76rem;font-weight:700;letter-spacing:0;padding:4px 10px;line-height:1.3}
 @media(max-width:700px){#revs{columns:2 220px;column-gap:12px}#revs .rev{padding:19px;margin-bottom:12px!important}}
 @media(max-width:490px){#revs{columns:1}#revs .rev{padding:20px}}
 
@@ -472,7 +472,7 @@ var dbRev=[];
 function drawRev(){
   var all=STATIC_REVIEWS.concat(dbRev);
   $("norev").hidden=all.length>0;
-  $("revs").innerHTML=all.map(function(r){return '<figure class="rev" style="margin:0"><div class="rev-rating" aria-label="'+(r.rating?esc(r.rating)+ ' dari 5 bintang':'Tanpa rating')+'">'+(r.rating?'★'.repeat(r.rating):'')+'</div><blockquote>“'+esc(r.isi)+'”</blockquote><figcaption><b>'+esc(r.nama)+'</b><small>'+esc(r.ket)+'</small></figcaption></figure>'}).join("");
+  $("revs").innerHTML=all.map(function(r){return '<figure class="rev" style="margin:0"><div class="rev-rating" aria-label="'+(r.rating?esc(r.rating)+' dari 5 bintang':'Testimoni tanpa penilaian bintang')+'">'+(r.rating?'★'.repeat(r.rating):'<span class="rev-label">'+(String(r.ket||"").toLowerCase().includes("alumni")?"Testimoni Alumni":"Cerita Pengalaman")+'</span>')+'</div><blockquote>“'+esc(r.isi)+'”</blockquote><figcaption><b>'+esc(r.nama)+'</b><small>'+esc(r.ket)+'</small></figcaption></figure>'}).join("");
 }
 drawRev();
 
