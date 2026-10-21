@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Jenius Edu | Bimbel SD, SMP & SMA di Cimanggis, Depok</title>
-<meta name="description" content="Jenius Edu adalah bimbingan belajar untuk siswa SD, SMP, dan SMA di Cimanggis dan sekitarnya. Kelas kecil, pengajar komunikatif, jadwal fleksibel, dan konsultasi melalui WhatsApp.">
+<title>Les Privat SD, SMP &amp; SMA Cimanggis Depok | Jenius Education</title>
+<meta name="description" content="Les privat SD, SMP, dan SMA di Cimanggis, Depok bersama Jenius Education. Pendampingan belajar personal, tatap muka atau online. Konsultasi melalui WhatsApp.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://bimbel-jenius-education.vercel.app/">
 <meta property="og:type" content="website">
@@ -146,7 +146,7 @@ footer{padding:28px 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
 .gallery-card{grid-column:span 4;min-height:220px;background:var(--bg);border:2px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:.2s ease;overflow:hidden}
 .gallery-card:hover{transform:translateY(-5px);border-color:var(--ink);box-shadow:7px 7px 0 var(--ink)}
 .gallery-main{grid-column:span 6;min-height:300px;background:var(--hl)}
-.gallery-art{height:118px;border-radius:18px;background:var(--card);border:2px solid var(--ink);overflow:hidden;margin-bottom:18px}.gallery-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}.gallery-card:hover .gallery-art img{transform:scale(1.04)}
+.gallery-art{display:block;height:180px;border-radius:18px;background:var(--card);border:2px solid var(--ink);overflow:hidden;margin-bottom:18px}.gallery-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}.gallery-card:hover .gallery-art img{transform:scale(1.04)}.gallery-main .gallery-art{height:220px}.gallery-art:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .gallery-card strong{font-family:"Bricolage Grotesque",sans-serif;font-size:1.2rem}.gallery-card p{margin:5px 0 0;color:var(--muted)}
 .gallery-note{margin-top:18px;padding:13px 16px;border-radius:14px;background:var(--bg);border:1px dashed var(--line);color:var(--muted);font-size:.9rem}
 @media(max-width:760px){.gallery-heading{display:grid;gap:12px}.gallery-card,.gallery-main{grid-column:span 12;min-height:220px}}
@@ -201,6 +201,22 @@ section{scroll-margin-top:18px}
   .wa-float-text{font-size:.82rem}
 }
 @media(max-width:390px){.wa-float-text{display:none}.wa-float{width:52px;height:52px;padding:7px;justify-content:center}.wa-float-icon{width:34px;height:34px}.logo span{font-size:1rem}}
+
+/* Ulasan: compact masonry-style columns, no artificial card height */
+#revs{display:block;columns:3 270px;column-gap:18px;max-width:1040px;margin-inline:auto}
+#revs .rev{display:inline-flex;width:100%;vertical-align:top;break-inside:avoid;page-break-inside:avoid;box-sizing:border-box;margin:0 0 18px!important;padding:22px 23px;border:1px solid #D7E6F4;border-radius:20px;background:var(--card);flex-direction:column;gap:14px;min-width:0;box-shadow:0 5px 18px rgba(17,62,99,.035);transition:box-shadow .2s,border-color .2s,transform .2s}
+#revs .rev:hover{border-color:#A9CCE9;box-shadow:0 10px 24px rgba(17,62,99,.09);transform:translateY(-2px)}
+#revs .rev blockquote{margin:0;color:var(--ink);font-size:.94rem;line-height:1.7;overflow-wrap:anywhere}
+#revs .rev figcaption{display:flex;flex-direction:column;gap:4px;border-top:1px solid #E5EEF7;padding-top:14px}
+#revs .rev figcaption b{font-size:.94rem;color:#113E68}
+#revs .rev figcaption small{color:var(--muted);font-size:.8rem;line-height:1.45}
+#revs .rev-rating{color:#C57912;letter-spacing:2px;font-size:1rem;line-height:1.2}
+#revs .rev-rating{min-height:24px;display:flex;align-items:center}#revs .rev-label{display:inline-flex;align-items:center;background:#EFF6FC;border:1px solid #D5E6F4;border-radius:999px;color:#275D84;font-size:.76rem;font-weight:700;letter-spacing:0;padding:4px 10px;line-height:1.3}
+@media(max-width:700px){#revs{columns:2 220px;column-gap:12px}#revs .rev{padding:19px;margin-bottom:12px!important}}
+@media(max-width:490px){#revs{columns:1}#revs .rev{padding:20px}}
+
+
+.review-form-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:start;max-width:1040px;margin:42px auto 0;padding:30px;border:1px solid var(--line);border-radius:24px;background:#F6FAFE}.review-form-wrap h3{font-size:1.7rem;margin:0 0 10px}.review-form-wrap p{color:var(--muted);line-height:1.6}.review-submit-form{display:grid;gap:13px}.review-submit-form>label{display:grid;gap:5px;font-weight:700}.review-submit-form input:not([type=radio]):not([type=checkbox]),.review-submit-form textarea,.review-submit-form select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #B9D4E9;border-radius:11px;background:#fff;font:inherit;color:var(--ink)}.review-submit-form fieldset{border:1px solid #B9D4E9;border-radius:12px;padding:10px 14px}.review-submit-form legend{font-weight:700}.review-stars{display:flex;flex-wrap:wrap;gap:12px}.review-stars label{display:flex;align-items:center;gap:3px;color:#B76D08;font-size:1.4rem;cursor:pointer}.review-stars span{font-size:.8rem;color:var(--muted)}.review-consent{display:flex!important;flex-direction:row;align-items:start;font-size:.82rem;font-weight:500!important;line-height:1.5}.review-consent input{margin-top:4px}.review-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}#reviewFormStatus{font-size:.88rem;margin:0}@media(max-width:760px){.review-form-wrap{grid-template-columns:1fr;padding:20px;gap:12px}}
 </style>
 <script type="application/ld+json">
 {
@@ -256,8 +272,8 @@ section{scroll-margin-top:18px}
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">BIMBINGAN BELAJAR DI CIMANGGIS</span>
-      <h1>Belajar jadi <mark>lebih paham</mark>, bukan sekadar hafal.</h1>
-      <p>Bimbingan belajar untuk siswa SD, SMP, dan SMA dengan kelas kecil dan pengajar yang sabar menjelaskan sampai anak benar-benar mengerti.</p>
+      <h1>Les privat SD, SMP &amp; SMA di <mark>Cimanggis, Depok</mark></h1>
+      <p>Belajar lebih paham, bukan sekadar hafal. Jenius Education menyediakan pendampingan belajar untuk siswa SD, SMP, dan SMA di Cimanggis, Depok, dengan pilihan belajar tatap muka atau online.</p>
       <div class="cta">
         <a class="btn" href="#daftar">Daftar kelas percobaan</a>
         <a class="btn alt" href="#program">Lihat program</a>
@@ -276,14 +292,28 @@ section{scroll-margin-top:18px}
 
 <section id="program">
   <div class="wrap">
-    <h2>Program belajar</h2>
+    <h2>Program les privat SD, SMP &amp; SMA di Cimanggis</h2>
     <p class="lead">Pilih jenjang yang sesuai. Materi mengikuti kurikulum sekolah dan kebutuhan tiap anak.</p>
     <div class="grid program-grid">
-      <article class="prog"><div class="prog-label">SD • Kelas 1–6</div><div class="icon">📖</div><h3>Kelas SD</h3><div class="lv">Fondasi belajar & pendampingan tugas</div><ul><li>Matematika & Bahasa Inggris</li><li>Calistung untuk kelas awal</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp250.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
-      <article class="prog"><div class="prog-label">SMP • Kelas 7–9</div><div class="icon">📘</div><h3>Kelas SMP</h3><div class="lv">Pendalaman materi & persiapan ulangan</div><ul><li>Matematika & Bahasa Inggris</li><li>Fisika dasar</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp300.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
-      <article class="prog"><div class="prog-label">SMA • Kelas 10–12</div><div class="icon">🎓</div><h3>Kelas SMA</h3><div class="lv">Pendalaman pelajaran & persiapan ujian</div><ul><li>Matematika, Fisika & Kimia</li><li>Bahasa Inggris</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp350.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
+      <article class="prog"><div class="prog-label">SD • Kelas 1–6</div><div class="icon">📖</div><h3>Les Privat SD Cimanggis</h3><div class="lv">Fondasi belajar & pendampingan tugas</div><ul><li>Matematika & Bahasa Inggris</li><li>Calistung untuk kelas awal</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp250.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
+      <article class="prog"><div class="prog-label">SMP • Kelas 7–9</div><div class="icon">📘</div><h3>Les Privat SMP Cimanggis</h3><div class="lv">Pendalaman materi & persiapan ulangan</div><ul><li>Matematika & Bahasa Inggris</li><li>Fisika dasar</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp300.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
+      <article class="prog"><div class="prog-label">SMA • Kelas 10–12</div><div class="icon">🎓</div><h3>Les Privat SMA Cimanggis</h3><div class="lv">Pendalaman pelajaran & persiapan ujian</div><ul><li>Matematika, Fisika & Kimia</li><li>Bahasa Inggris</li><li>Bantuan tugas & persiapan ulangan</li></ul><div class="price-box"><span>Biaya bulanan</span><strong>Rp350.000</strong><small>per bulan</small></div><a class="mini-cta" href="#daftar">💬 Konsultasi program</a></article>
     </div>
     <p class="lead" style="margin:24px 0 0">Ada tugas atau ulangan mendadak dari sekolah? Bawa saja soalnya, kami bantu pahami dan kerjakan bersama.</p>
+  </div>
+</section>
+
+<section id="seo-les-privat" aria-labelledby="seo-les-title">
+  <div class="wrap">
+    <span class="section-kicker">📍 Bimbingan belajar lokal</span>
+    <h2 id="seo-les-title">Les privat di Cimanggis, Depok untuk SD, SMP, dan SMA</h2>
+    <p class="lead">Jenius Education mendampingi siswa di Cimanggis dan sekitarnya, termasuk Pasir Gunung Selatan. Tersedia pilihan belajar di tempat belajar atau sesi online sesuai kebutuhan dan ketersediaan jadwal.</p>
+    <div class="grid">
+      <article class="prog"><h3>Pendampingan belajar SD</h3><p>Fokus pada pemahaman konsep dasar, latihan soal, calistung untuk kelas awal, dan persiapan ulangan. Materi mengikuti kelas serta kebutuhan siswa.</p></article>
+      <article class="prog"><h3>Pendalaman materi SMP</h3><p>Pembahasan Matematika, Bahasa Inggris, dan pelajaran lainnya sesuai kebutuhan. Siswa dapat mendiskusikan materi sekolah yang masih sulit dipahami.</p></article>
+      <article class="prog"><h3>Persiapan belajar SMA</h3><p>Latihan dan pembahasan soal Matematika, Fisika, Kimia, serta Bahasa Inggris. Fokus belajar menyesuaikan tugas, ulangan, dan persiapan ujian.</p></article>
+    </div>
+    <p style="margin-top:22px">Sedang mencari <strong>guru les privat di Cimanggis atau Depok</strong>? <a href="#daftar">Konsultasikan jenjang, mata pelajaran, dan jadwal belajar</a> melalui WhatsApp.</p>
   </div>
 </section>
 
@@ -336,25 +366,14 @@ section{scroll-margin-top:18px}
         <span class="section-kicker">📸 Suasana belajar</span>
         <h2>Belajar dibuat lebih nyaman dan dekat</h2>
       </div>
-      <p class="lead">Jenius Edu membangun suasana belajar yang mendorong anak untuk bertanya, memahami materi, dan lebih percaya diri.</p>
+      <p class="lead">Dokumentasi asli kegiatan belajar Jenius Education. Klik foto untuk melihat ukuran lebih besar.</p>
     </div>
     <div class="gallery-grid">
-      <article class="gallery-card gallery-main">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=85" alt="Siswa sedang belajar bersama pengajar" loading="lazy" decoding="async"></div>
-        <div><strong>Fokus memahami materi</strong><p>Belajar tidak hanya mengejar hafalan, tetapi membantu siswa memahami konsep.</p></div>
-      </article>
-      <article class="gallery-card">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85" alt="Siswa berdiskusi dan belajar bersama" loading="lazy" decoding="async"></div>
-        <div><strong>Pengajar siap membantu</strong><p>Siswa punya ruang untuk bertanya ketika menemukan materi yang sulit.</p></div>
-      </article>
-      <article class="gallery-card">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=85" alt="Aktivitas belajar di ruang kelas" loading="lazy" decoding="async"></div>
-        <div><strong>Latihan & tugas sekolah</strong><p>Materi dapat diperdalam melalui latihan dan pendampingan tugas.</p></div>
-      </article>
-      <article class="gallery-card">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=85" alt="Siswa mengerjakan tugas dengan pendampingan" loading="lazy" decoding="async"></div>
-        <div><strong>Target belajar lebih jelas</strong><p>Kebutuhan anak dibahas sejak awal agar proses belajar lebih terarah.</p></div>
-      </article>
+      <article class="gallery-card gallery-main"><a class="gallery-art" href="/assets/kegiatan-belajar-01.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 1 ukuran penuh"><img src="/assets/kegiatan-belajar-01.webp" alt="Suasana belajar bersama Jenius Education (foto 1)" loading="lazy" decoding="async"></a><div><strong>Dokumentasi kegiatan belajar</strong><p>Suasana belajar bersama Jenius Education</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-02.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 2 ukuran penuh"><img src="/assets/kegiatan-belajar-02.webp" alt="Kegiatan belajar dan pembahasan materi (foto 2)" loading="lazy" decoding="async"></a><div><strong>Pendampingan siswa</strong><p>Kegiatan belajar dan pembahasan materi</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-03.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 3 ukuran penuh"><img src="/assets/kegiatan-belajar-03.webp" alt="Dokumentasi aktivitas belajar siswa (foto 3)" loading="lazy" decoding="async"></a><div><strong>Belajar bersama</strong><p>Dokumentasi aktivitas belajar siswa</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-04.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 4 ukuran penuh"><img src="/assets/kegiatan-belajar-04.webp" alt="Proses belajar bersama pengajar (foto 4)" loading="lazy" decoding="async"></a><div><strong>Latihan dan diskusi</strong><p>Proses belajar bersama pengajar</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-05.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 5 ukuran penuh"><img src="/assets/kegiatan-belajar-05.webp" alt="Arsip kegiatan belajar Jenius Education (foto 5)" loading="lazy" decoding="async"></a><div><strong>Suasana kelas</strong><p>Arsip kegiatan belajar Jenius Education</p></div></article>
     </div>
     <div class="gallery-note">💡 Suasana belajar dirancang agar siswa merasa nyaman, aktif bertanya, dan lebih percaya diri.</div>
   </div>
@@ -390,16 +409,16 @@ section{scroll-margin-top:18px}
 <section id="ulasan">
   <div class="wrap">
     <div class="review-intro">
-      <h2>Kata orang tua dan siswa</h2>
-      <p class="lead">Pengalaman belajar yang nyata membantu orang tua mengenal Jenius Edu sebelum memilih program.</p>
+      <h2>Ulasan orang tua dan siswa Jenius Education</h2>
+      <p class="lead">Kumpulan pengalaman asli siswa, alumni, dan orang tua dari dokumentasi Jenius Education tahun 2023–2024.</p>
     </div>
     <div class="grid" id="revs"></div>
     <div id="norev" class="reviews-empty">
       <div class="review-icon">💬</div>
-      <strong>Ulasan dari keluarga Jenius Edu akan tampil di sini.</strong>
-      <p class="review-note">Sudah pernah belajar bersama kami? Bagikan pengalaman Anda melalui WhatsApp.</p>
+      <strong>Ulasan asli dari orang tua dan siswa akan tampil di sini.</strong>
+      <p class="review-note">Sudah belajar bersama kami? Bagikan pengalaman melalui WhatsApp. Ulasan hanya dipublikasikan dengan izin.</p>
     </div>
-    <p style="text-align:center;margin-top:22px"><a class="btn alt" id="sendrev" href="#">💬 Tulis ulasan lewat WhatsApp</a></p>
+    <div class="review-form-wrap"><div><span class="section-kicker">Berbagi pengalaman</span><h3>Tulis ulasan Anda</h3><p>Sudah belajar bersama Jenius Education? Ceritakan pengalaman Anda. Ulasan akan diperiksa pengelola sebelum ditampilkan.</p><p class="form-note">Mohon orang tua atau wali yang mengirimkan ulasan untuk siswa di bawah umur. Jangan cantumkan nomor telepon, alamat, atau informasi pribadi anak dalam isi ulasan.</p></div><form id="reviewForm" class="review-submit-form"><label>Nama atau inisial<input name="reviewer_name" maxlength="90" required placeholder="Contoh: Ibu Nissa"></label><label>Anda adalah<select name="reviewer_type" required><option value="orang_tua">Orang tua / wali</option><option value="siswa">Siswa (dengan persetujuan wali)</option><option value="alumni">Alumni</option></select></label><fieldset><legend>Penilaian belajar</legend><div class="review-stars" role="radiogroup" aria-label="Rating dari satu sampai lima bintang"><label><input type="radio" name="rating" value="1" required>★ <span>1</span></label><label><input type="radio" name="rating" value="2">★ <span>2</span></label><label><input type="radio" name="rating" value="3">★ <span>3</span></label><label><input type="radio" name="rating" value="4">★ <span>4</span></label><label><input type="radio" name="rating" value="5">★ <span>5</span></label></div></fieldset><label>Pengalaman belajar<textarea name="review_text" rows="4" minlength="20" maxlength="1200" required placeholder="Ceritakan pengalaman Anda..."></textarea></label><label class="review-consent"><input type="checkbox" name="consent" required> Saya menyetujui ulasan dan nama/inisial di atas dipublikasikan setelah ditinjau pengelola, serta memiliki izin wali bila mewakili siswa di bawah umur.</label><div class="review-hp" aria-hidden="true"><label>Biarkan kosong<input name="website" tabindex="-1" autocomplete="off"></label></div><button class="btn" id="reviewSubmitBtn" type="submit">Kirim ulasan</button><p id="reviewFormStatus" role="status" aria-live="polite"></p></form></div>
   </div>
 </section>
 
@@ -423,8 +442,8 @@ section{scroll-margin-top:18px}
       <label>Kelas<input name="kelas" required placeholder="Contoh: Kelas 8"></label>
       <label>Mata pelajaran<input name="mapel" required placeholder="Contoh: Matematika"></label>
       <label>Kebutuhan belajar<select name="kebutuhan"><option>Memahami materi</option><option>Persiapan ulangan / ujian</option><option>Bantuan tugas sekolah</option><option>Meningkatkan nilai</option><option>Lainnya</option></select></label>
-      <label>Preferensi jadwal <span class="optional">(opsional)</span><input name="jadwal" placeholder="Contoh: sore hari"></label>
-      <button class="btn form-submit" type="submit">💬 Konsultasi lewat WhatsApp</button>
+      <label>Metode belajar<select name="metode"><option value="Tatap muka di tempat belajar">Tatap muka di tempat belajar</option><option value="Online via Zoom">Online via Zoom</option><option value="Belum menentukan">Belum menentukan</option></select></label><label>Preferensi jadwal <span class="optional">(opsional)</span><input name="jadwal" placeholder="Contoh: Senin sore"></label>
+      <button class="btn form-submit" type="submit">💬 Daftar kelas percobaan via WhatsApp</button>
       <p class="form-note">Tanpa pembayaran online. Anda akan diarahkan ke WhatsApp untuk konsultasi.</p>
     </form>
   </div>
@@ -438,24 +457,33 @@ section{scroll-margin-top:18px}
 <footer><div class="wrap">© 2026 Jenius Edu. Bimbingan belajar SD, SMP, dan SMA.</div></footer>
 
 <script>
+
+/* Privacy-friendly local event hooks. Add a consent-aware analytics provider separately if desired. */
+function trackJenius(eventName){try{if(typeof window.gtag==="function")window.gtag("event",eventName);if(typeof window.plausible==="function")window.plausible(eventName)}catch(e){console.warn("Event tracking unavailable",e)}}
+document.addEventListener("click",function(e){var a=e.target.closest('a[href*="wa.me/"]');if(a)trackJenius("whatsapp_click")});
 var WA="628164855461"; // ganti dengan nomor WhatsApp Anda (awali 62, tanpa +)
 document.getElementById("f").addEventListener("submit",function(e){
   e.preventDefault();
   var d=new FormData(e.target);
-  var t="Halo Jenius Edu, saya "+d.get("nama")+". Saya ingin konsultasi kelas percobaan untuk anak dengan detail:\n- Jenjang: "+d.get("jenjang")+"\n- Kelas: "+d.get("kelas")+"\n- Mata pelajaran: "+d.get("mapel")+"\n- Kebutuhan: "+d.get("kebutuhan")+"\n- Preferensi jadwal: "+(d.get("jadwal")||"Belum ditentukan");
-  window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank");
+  var t="Halo Jenius Edu, saya "+d.get("nama")+". Saya ingin konsultasi kelas percobaan untuk anak dengan detail:\n- Jenjang: "+d.get("jenjang")+"\n- Kelas: "+d.get("kelas")+"\n- Mata pelajaran: "+d.get("mapel")+"\n- Kebutuhan: "+d.get("kebutuhan")+"\n- Metode belajar: "+d.get("metode")+"\n- Preferensi jadwal: "+(d.get("jadwal")||"Belum ditentukan");
+  trackJenius("trial_form_whatsapp");window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank");
 });
 
-var STATIC_REVIEWS=[]; // ulasan yang ditanam permanen di halaman publik: {nama,ket,isi}
+var STATIC_REVIEWS=[{"nama":"Taruli","ket":"Siswa • testimoni 2024","isi":"Belajar di Jenius seru banget. Sejak belajar di Jenius, nilai aku berkembang dan aku memperoleh ranking 2 dari semester kemarin.","rating":5},{"nama":"Cahya","ket":"Siswa • testimoni 2024","isi":"Baru les disini ternyata enak dan seru, jadi lebih ngerti kalau ada yang ga faham gitu. Makasih yaa Jenius Edu luv luv","rating":5},{"nama":"Nasywa","ket":"Siswa • testimoni 2024","isi":"Belajar disini asyik sekali, gurunya juga asyik. Banyak latihan soal dan banyak permainan, jadi aku gak pernah bosen kalau les disini","rating":5},{"nama":"Adel","ket":"Siswa • testimoni 2024","isi":"Belajar di Jenius itu menyenangkan, karena suasana belajar yang seru dan santai. Penjelasan guru nya juga gampang dimengerti, sehingga aku terbantu buat memahami pelajaran. Terimakasih Jenius","rating":5},{"nama":"Orang tua Nissa","ket":"Orang tua siswa • testimoni 2023","isi":"Alhamdulillah Nissa langsung happy banget cerita hari pertamanya les. Terima kasih sebelumnya miss","rating":null},{"nama":"Raisa","ket":"Alumni • dokumentasi testimoni","isi":"Belajar di jenius itu metodenya santai dan asik banget, tapi tetap pada tujuan awal yang saya inginkan. Alhamdulillah lulus dengan hasil yang memuaskan dan keterima di SMA yang saya pilih, terimakasih jenius","rating":null},{"nama":"Clarence","ket":"Alumni • dokumentasi testimoni","isi":"Senang bisa belajar di jenius, kita bisa konsultasi kapan aja. Cara belajarnya juga seru banget, mudah dimengerti. Karena jenius, jadi mudah memahami pelajaran di sekolah, pokoknya makasih jenius!!!","rating":null},{"nama":"Christabel","ket":"Alumni • dokumentasi testimoni","isi":"suasana belajar di jenius tuh menyenangkan. gurunya asikk dan materi yg disampaikan jg lebih mudah dipahami. trus ketemu temen2 yg ngga kalah seruu, pokoknya seneng bgt bs jadi bagian dr jenius","rating":null},{"nama":"Alvin","ket":"Alumni • dokumentasi testimoni","isi":"Jujur sangat berkesan les di Jenius, Terima kasih atas tutor soal-soalnya","rating":null}]; // Testimoni arsip 2023–2024, transkripsi dari materi asli yang diizinkan.
 var $=function(i){return document.getElementById(i)};
 var rp=function(n){return "Rp"+Number(n||0).toLocaleString("id-ID")};
 var esc=function(t){var d=document.createElement("div");d.textContent=t==null?"":t;return d.innerHTML};
-$("sendrev").addEventListener("click",function(e){e.preventDefault();window.open("https://wa.me/"+WA+"?text="+encodeURIComponent("Halo Jenius Edu, saya ingin menulis ulasan: "),"_blank")});
+var reviewApi=null;
+async function reviewConfig(){if(reviewApi)return reviewApi;var r=await fetch("/api/public-config",{cache:"no-store"});if(!r.ok)throw new Error("Form ulasan belum dikonfigurasi. Silakan hubungi pengelola.");var cfg=await r.json();if(!cfg.url||!cfg.key)throw new Error("Konfigurasi ulasan belum lengkap.");reviewApi=cfg;return cfg;}
+async function reviewRequest(table,method,payload,params){var cfg=await reviewConfig();var endpoint=(cfg.url.endsWith("/")?cfg.url.slice(0,-1):cfg.url)+"/rest/v1/"+table+(params||"");var r=await fetch(endpoint,{method:method,headers:{"apikey":cfg.key,"Authorization":"Bearer "+cfg.key,"Content-Type":"application/json","Prefer":"return=minimal"},body:payload?JSON.stringify(payload):undefined});if(!r.ok)throw new Error("Layanan ulasan belum siap. Coba lagi nanti.");return r;}
+document.getElementById("reviewForm").addEventListener("submit",async function(e){e.preventDefault();var f=e.currentTarget,d=new FormData(f),btn=document.getElementById("reviewSubmitBtn"),status=document.getElementById("reviewFormStatus");if(d.get("website"))return;var name=String(d.get("reviewer_name")||"").trim(),body=String(d.get("review_text")||"").trim(),rating=Number(d.get("rating"));if(name.length<2||body.length<20||!Number.isInteger(rating)||rating<1||rating>5||!d.get("consent")){status.textContent="Lengkapi nama, rating, isi ulasan minimal 20 karakter, dan persetujuan.";return}btn.disabled=true;status.textContent="Mengirim ulasan...";try{await reviewRequest("review_submissions","POST",{reviewer_name:name,reviewer_type:d.get("reviewer_type"),review_text:body,rating:rating,consent_confirmed:true});f.reset();status.textContent="Terima kasih! Ulasan Anda berhasil dikirim dan menunggu pemeriksaan pengelola.";if(typeof trackJenius==="function")trackJenius("review_submitted");}catch(err){status.textContent=err.message||"Gagal mengirim ulasan. Coba lagi."; }finally{btn.disabled=false}});
+async function loadPublishedReviews(){try{var cfg=await reviewConfig();var res=await fetch((cfg.url.endsWith("/")?cfg.url.slice(0,-1):cfg.url)+"/rest/v1/public_reviews?select=reviewer_name,reviewer_type,education_level,review_text,rating,review_year&order=created_at.desc&limit=30",{headers:{"apikey":cfg.key,"Authorization":"Bearer "+cfg.key}});if(!res.ok)return;var data=await res.json();dbRev=data.map(function(x){return {nama:x.reviewer_name,ket:({siswa:"Siswa",orang_tua:"Orang tua",alumni:"Alumni"}[x.reviewer_type]||"Pengalaman belajar")+(x.review_year?" • "+x.review_year:""),isi:x.review_text,rating:x.rating}});drawRev()}catch(e){console.warn("Ulasan online belum tersedia",e)}}
+loadPublishedReviews();
 var dbRev=[];
 function drawRev(){
   var all=STATIC_REVIEWS.concat(dbRev);
   $("norev").hidden=all.length>0;
-  $("revs").innerHTML=all.map(function(r){return '<figure class="rev" style="margin:0"><q>'+esc(r.isi)+'</q><b>'+esc(r.nama)+'</b><small>'+esc(r.ket)+'</small></figure>'}).join("");
+  $("revs").innerHTML=all.map(function(r){return '<figure class="rev" style="margin:0"><div class="rev-rating" aria-label="'+(r.rating?esc(r.rating)+' dari 5 bintang':'Testimoni tanpa penilaian bintang')+'">'+(r.rating?'★'.repeat(r.rating):'<span class="rev-label">'+(String(r.ket||"").toLowerCase().includes("alumni")?"Testimoni Alumni":"Cerita Pengalaman")+'</span>')+'</div><blockquote>“'+esc(r.isi)+'”</blockquote><figcaption><b>'+esc(r.nama)+'</b><small>'+esc(r.ket)+'</small></figcaption></figure>'}).join("");
 }
 drawRev();
 
