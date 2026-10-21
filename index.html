@@ -146,7 +146,7 @@ footer{padding:28px 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
 .gallery-card{grid-column:span 4;min-height:220px;background:var(--bg);border:2px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:.2s ease;overflow:hidden}
 .gallery-card:hover{transform:translateY(-5px);border-color:var(--ink);box-shadow:7px 7px 0 var(--ink)}
 .gallery-main{grid-column:span 6;min-height:300px;background:var(--hl)}
-.gallery-art{height:118px;border-radius:18px;background:var(--card);border:2px solid var(--ink);overflow:hidden;margin-bottom:18px}.gallery-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}.gallery-card:hover .gallery-art img{transform:scale(1.04)}
+.gallery-art{display:block;height:180px;border-radius:18px;background:var(--card);border:2px solid var(--ink);overflow:hidden;margin-bottom:18px}.gallery-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}.gallery-card:hover .gallery-art img{transform:scale(1.04)}.gallery-main .gallery-art{height:220px}.gallery-art:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .gallery-card strong{font-family:"Bricolage Grotesque",sans-serif;font-size:1.2rem}.gallery-card p{margin:5px 0 0;color:var(--muted)}
 .gallery-note{margin-top:18px;padding:13px 16px;border-radius:14px;background:var(--bg);border:1px dashed var(--line);color:var(--muted);font-size:.9rem}
 @media(max-width:760px){.gallery-heading{display:grid;gap:12px}.gallery-card,.gallery-main{grid-column:span 12;min-height:220px}}
@@ -351,25 +351,14 @@ section{scroll-margin-top:18px}
         <span class="section-kicker">📸 Suasana belajar</span>
         <h2>Belajar dibuat lebih nyaman dan dekat</h2>
       </div>
-      <p class="lead">Jenius Edu membangun suasana belajar yang mendorong anak untuk bertanya, memahami materi, dan lebih percaya diri.</p>
+      <p class="lead">Dokumentasi asli kegiatan belajar Jenius Education. Klik foto untuk melihat ukuran lebih besar.</p>
     </div>
     <div class="gallery-grid">
-      <article class="gallery-card gallery-main">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=85" alt="Siswa sedang belajar bersama pengajar" loading="lazy" decoding="async"></div>
-        <div><strong>Fokus memahami materi</strong><p>Belajar tidak hanya mengejar hafalan, tetapi membantu siswa memahami konsep.</p></div>
-      </article>
-      <article class="gallery-card">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85" alt="Siswa berdiskusi dan belajar bersama" loading="lazy" decoding="async"></div>
-        <div><strong>Pengajar siap membantu</strong><p>Siswa punya ruang untuk bertanya ketika menemukan materi yang sulit.</p></div>
-      </article>
-      <article class="gallery-card">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=85" alt="Aktivitas belajar di ruang kelas" loading="lazy" decoding="async"></div>
-        <div><strong>Latihan & tugas sekolah</strong><p>Materi dapat diperdalam melalui latihan dan pendampingan tugas.</p></div>
-      </article>
-      <article class="gallery-card">
-        <div class="gallery-art"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=85" alt="Siswa mengerjakan tugas dengan pendampingan" loading="lazy" decoding="async"></div>
-        <div><strong>Target belajar lebih jelas</strong><p>Kebutuhan anak dibahas sejak awal agar proses belajar lebih terarah.</p></div>
-      </article>
+      <article class="gallery-card gallery-main"><a class="gallery-art" href="/assets/kegiatan-belajar-01.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 1 ukuran penuh"><img src="/assets/kegiatan-belajar-01.webp" alt="Suasana belajar bersama Jenius Education (foto 1)" loading="lazy" decoding="async"></a><div><strong>Dokumentasi kegiatan belajar</strong><p>Suasana belajar bersama Jenius Education</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-02.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 2 ukuran penuh"><img src="/assets/kegiatan-belajar-02.webp" alt="Kegiatan belajar dan pembahasan materi (foto 2)" loading="lazy" decoding="async"></a><div><strong>Pendampingan siswa</strong><p>Kegiatan belajar dan pembahasan materi</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-03.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 3 ukuran penuh"><img src="/assets/kegiatan-belajar-03.webp" alt="Dokumentasi aktivitas belajar siswa (foto 3)" loading="lazy" decoding="async"></a><div><strong>Belajar bersama</strong><p>Dokumentasi aktivitas belajar siswa</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-04.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 4 ukuran penuh"><img src="/assets/kegiatan-belajar-04.webp" alt="Proses belajar bersama pengajar (foto 4)" loading="lazy" decoding="async"></a><div><strong>Latihan dan diskusi</strong><p>Proses belajar bersama pengajar</p></div></article>
+      <article class="gallery-card"><a class="gallery-art" href="/assets/kegiatan-belajar-05.webp" target="_blank" rel="noopener" aria-label="Lihat foto kegiatan belajar 5 ukuran penuh"><img src="/assets/kegiatan-belajar-05.webp" alt="Arsip kegiatan belajar Jenius Education (foto 5)" loading="lazy" decoding="async"></a><div><strong>Suasana kelas</strong><p>Arsip kegiatan belajar Jenius Education</p></div></article>
     </div>
     <div class="gallery-note">💡 Suasana belajar dirancang agar siswa merasa nyaman, aktif bertanya, dan lebih percaya diri.</div>
   </div>
