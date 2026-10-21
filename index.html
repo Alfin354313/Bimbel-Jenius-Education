@@ -201,7 +201,20 @@ section{scroll-margin-top:18px}
   .wa-float-text{font-size:.82rem}
 }
 @media(max-width:390px){.wa-float-text{display:none}.wa-float{width:52px;height:52px;padding:7px;justify-content:center}.wa-float-icon{width:34px;height:34px}.logo span{font-size:1rem}}
- .rev{padding:22px;border:1px solid var(--line);border-radius:20px;background:var(--card);display:flex;flex-direction:column;gap:12px;min-width:0}.rev blockquote{margin:0;color:var(--ink);font-size:.95rem;line-height:1.65;flex:1}.rev figcaption{display:flex;flex-direction:column;gap:2px}.rev figcaption small{color:var(--muted)}.rev-rating{color:#C57912;letter-spacing:2px;min-height:20px;font-size:1.1rem} 
+
+/* Ulasan: compact masonry-style columns, no artificial card height */
+#revs{display:block;columns:3 270px;column-gap:18px;max-width:1040px;margin-inline:auto}
+#revs .rev{display:inline-flex;width:100%;vertical-align:top;break-inside:avoid;page-break-inside:avoid;box-sizing:border-box;margin:0 0 18px!important;padding:22px 23px;border:1px solid #D7E6F4;border-radius:20px;background:var(--card);flex-direction:column;gap:14px;min-width:0;box-shadow:0 5px 18px rgba(17,62,99,.035);transition:box-shadow .2s,border-color .2s,transform .2s}
+#revs .rev:hover{border-color:#A9CCE9;box-shadow:0 10px 24px rgba(17,62,99,.09);transform:translateY(-2px)}
+#revs .rev blockquote{margin:0;color:var(--ink);font-size:.94rem;line-height:1.7;overflow-wrap:anywhere}
+#revs .rev figcaption{display:flex;flex-direction:column;gap:4px;border-top:1px solid #E5EEF7;padding-top:14px}
+#revs .rev figcaption b{font-size:.94rem;color:#113E68}
+#revs .rev figcaption small{color:var(--muted);font-size:.8rem;line-height:1.45}
+#revs .rev-rating{color:#C57912;letter-spacing:2px;font-size:1rem;line-height:1.2}
+#revs .rev-rating:empty{display:none}
+@media(max-width:700px){#revs{columns:2 220px;column-gap:12px}#revs .rev{padding:19px;margin-bottom:12px!important}}
+@media(max-width:490px){#revs{columns:1}#revs .rev{padding:20px}}
+
 </style>
 <script type="application/ld+json">
 {
