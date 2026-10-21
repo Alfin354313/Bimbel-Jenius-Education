@@ -1,0 +1,1 @@
+module.exports=function(req,res){res.setHeader('Cache-Control','no-store');const sitekey=process.env.TURNSTILE_SITE_KEY;if(!sitekey)return res.status(503).json({error:'Verifikasi belum dikonfigurasi'});return res.status(200).json({sitekey})};
