@@ -201,6 +201,7 @@ section{scroll-margin-top:18px}
   .wa-float-text{font-size:.82rem}
 }
 @media(max-width:390px){.wa-float-text{display:none}.wa-float{width:52px;height:52px;padding:7px;justify-content:center}.wa-float-icon{width:34px;height:34px}.logo span{font-size:1rem}}
+ .rev{padding:22px;border:1px solid var(--line);border-radius:20px;background:var(--card);display:flex;flex-direction:column;gap:12px;min-width:0}.rev blockquote{margin:0;color:var(--ink);font-size:.95rem;line-height:1.65;flex:1}.rev figcaption{display:flex;flex-direction:column;gap:2px}.rev figcaption small{color:var(--muted)}.rev-rating{color:#C57912;letter-spacing:2px;min-height:20px;font-size:1.1rem} 
 </style>
 <script type="application/ld+json">
 {
@@ -405,7 +406,7 @@ section{scroll-margin-top:18px}
   <div class="wrap">
     <div class="review-intro">
       <h2>Ulasan orang tua dan siswa Jenius Education</h2>
-      <p class="lead">Pengalaman belajar yang nyata membantu orang tua mengenal Jenius Edu sebelum memilih program.</p>
+      <p class="lead">Kumpulan pengalaman asli siswa, alumni, dan orang tua dari dokumentasi Jenius Education tahun 2023–2024.</p>
     </div>
     <div class="grid" id="revs"></div>
     <div id="norev" class="reviews-empty">
@@ -460,7 +461,7 @@ document.getElementById("f").addEventListener("submit",function(e){
   window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank");
 });
 
-var STATIC_REVIEWS=[]; // Hanya ulasan nyata dengan persetujuan penulis: {nama,ket,isi}
+var STATIC_REVIEWS=[{"nama":"Taruli","ket":"Siswa • testimoni 2024","isi":"Belajar di Jenius seru banget. Sejak belajar di Jenius, nilai aku berkembang dan aku memperoleh ranking 2 dari semester kemarin.","rating":5},{"nama":"Cahya","ket":"Siswa • testimoni 2024","isi":"Baru les disini ternyata enak dan seru, jadi lebih ngerti kalau ada yang ga faham gitu. Makasih yaa Jenius Edu luv luv","rating":5},{"nama":"Nasywa","ket":"Siswa • testimoni 2024","isi":"Belajar disini asyik sekali, gurunya juga asyik. Banyak latihan soal dan banyak permainan, jadi aku gak pernah bosen kalau les disini","rating":5},{"nama":"Adel","ket":"Siswa • testimoni 2024","isi":"Belajar di Jenius itu menyenangkan, karena suasana belajar yang seru dan santai. Penjelasan guru nya juga gampang dimengerti, sehingga aku terbantu buat memahami pelajaran. Terimakasih Jenius","rating":5},{"nama":"Orang tua Nissa","ket":"Orang tua siswa • testimoni 2023","isi":"Alhamdulillah Nissa langsung happy banget cerita hari pertamanya les. Terima kasih sebelumnya miss","rating":null},{"nama":"Raisa","ket":"Alumni • dokumentasi testimoni","isi":"Belajar di jenius itu metodenya santai dan asik banget, tapi tetap pada tujuan awal yang saya inginkan. Alhamdulillah lulus dengan hasil yang memuaskan dan keterima di SMA yang saya pilih, terimakasih jenius","rating":null},{"nama":"Clarence","ket":"Alumni • dokumentasi testimoni","isi":"Senang bisa belajar di jenius, kita bisa konsultasi kapan aja. Cara belajarnya juga seru banget, mudah dimengerti. Karena jenius, jadi mudah memahami pelajaran di sekolah, pokoknya makasih jenius!!!","rating":null},{"nama":"Christabel","ket":"Alumni • dokumentasi testimoni","isi":"suasana belajar di jenius tuh menyenangkan. gurunya asikk dan materi yg disampaikan jg lebih mudah dipahami. trus ketemu temen2 yg ngga kalah seruu, pokoknya seneng bgt bs jadi bagian dr jenius","rating":null},{"nama":"Alvin","ket":"Alumni • dokumentasi testimoni","isi":"Jujur sangat berkesan les di Jenius, Terima kasih atas tutor soal-soalnya","rating":null}]; // Testimoni arsip 2023–2024, transkripsi dari materi asli yang diizinkan.
 var $=function(i){return document.getElementById(i)};
 var rp=function(n){return "Rp"+Number(n||0).toLocaleString("id-ID")};
 var esc=function(t){var d=document.createElement("div");d.textContent=t==null?"":t;return d.innerHTML};
@@ -469,7 +470,7 @@ var dbRev=[];
 function drawRev(){
   var all=STATIC_REVIEWS.concat(dbRev);
   $("norev").hidden=all.length>0;
-  $("revs").innerHTML=all.map(function(r){return '<figure class="rev" style="margin:0"><q>'+esc(r.isi)+'</q><b>'+esc(r.nama)+'</b><small>'+esc(r.ket)+'</small></figure>'}).join("");
+  $("revs").innerHTML=all.map(function(r){return '<figure class="rev" style="margin:0"><div class="rev-rating" aria-label="'+(r.rating?esc(r.rating)+ ' dari 5 bintang':'Tanpa rating')+'">'+(r.rating?'★'.repeat(r.rating):'')+'</div><blockquote>“'+esc(r.isi)+'”</blockquote><figcaption><b>'+esc(r.nama)+'</b><small>'+esc(r.ket)+'</small></figcaption></figure>'}).join("");
 }
 drawRev();
 
