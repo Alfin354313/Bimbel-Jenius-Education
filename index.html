@@ -442,8 +442,8 @@ section{scroll-margin-top:18px}
       <label>Kelas<input name="kelas" required placeholder="Contoh: Kelas 8"></label>
       <label>Mata pelajaran<input name="mapel" required placeholder="Contoh: Matematika"></label>
       <label>Kebutuhan belajar<select name="kebutuhan"><option>Memahami materi</option><option>Persiapan ulangan / ujian</option><option>Bantuan tugas sekolah</option><option>Meningkatkan nilai</option><option>Lainnya</option></select></label>
-      <label>Preferensi jadwal <span class="optional">(opsional)</span><input name="jadwal" placeholder="Contoh: sore hari"></label>
-      <button class="btn form-submit" type="submit">💬 Konsultasi lewat WhatsApp</button>
+      <label>Metode belajar<select name="metode"><option value="Tatap muka di tempat belajar">Tatap muka di tempat belajar</option><option value="Online via Zoom">Online via Zoom</option><option value="Belum menentukan">Belum menentukan</option></select></label><label>Preferensi jadwal <span class="optional">(opsional)</span><input name="jadwal" placeholder="Contoh: Senin sore"></label>
+      <button class="btn form-submit" type="submit">💬 Daftar kelas percobaan via WhatsApp</button>
       <p class="form-note">Tanpa pembayaran online. Anda akan diarahkan ke WhatsApp untuk konsultasi.</p>
     </form>
   </div>
@@ -457,12 +457,16 @@ section{scroll-margin-top:18px}
 <footer><div class="wrap">© 2026 Jenius Edu. Bimbingan belajar SD, SMP, dan SMA.</div></footer>
 
 <script>
+
+/* Privacy-friendly local event hooks. Add a consent-aware analytics provider separately if desired. */
+function trackJenius(eventName){try{if(typeof window.gtag==="function")window.gtag("event",eventName);if(typeof window.plausible==="function")window.plausible(eventName)}catch(e){console.warn("Event tracking unavailable",e)}}
+document.addEventListener("click",function(e){var a=e.target.closest('a[href*="wa.me/"]');if(a)trackJenius("whatsapp_click")});
 var WA="628164855461"; // ganti dengan nomor WhatsApp Anda (awali 62, tanpa +)
 document.getElementById("f").addEventListener("submit",function(e){
   e.preventDefault();
   var d=new FormData(e.target);
-  var t="Halo Jenius Edu, saya "+d.get("nama")+". Saya ingin konsultasi kelas percobaan untuk anak dengan detail:\n- Jenjang: "+d.get("jenjang")+"\n- Kelas: "+d.get("kelas")+"\n- Mata pelajaran: "+d.get("mapel")+"\n- Kebutuhan: "+d.get("kebutuhan")+"\n- Preferensi jadwal: "+(d.get("jadwal")||"Belum ditentukan");
-  window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank");
+  var t="Halo Jenius Edu, saya "+d.get("nama")+". Saya ingin konsultasi kelas percobaan untuk anak dengan detail:\n- Jenjang: "+d.get("jenjang")+"\n- Kelas: "+d.get("kelas")+"\n- Mata pelajaran: "+d.get("mapel")+"\n- Kebutuhan: "+d.get("kebutuhan")+"\n- Metode belajar: "+d.get("metode")+"\n- Preferensi jadwal: "+(d.get("jadwal")||"Belum ditentukan");
+  trackJenius("trial_form_whatsapp");window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank");
 });
 
 var STATIC_REVIEWS=[{"nama":"Taruli","ket":"Siswa • testimoni 2024","isi":"Belajar di Jenius seru banget. Sejak belajar di Jenius, nilai aku berkembang dan aku memperoleh ranking 2 dari semester kemarin.","rating":5},{"nama":"Cahya","ket":"Siswa • testimoni 2024","isi":"Baru les disini ternyata enak dan seru, jadi lebih ngerti kalau ada yang ga faham gitu. Makasih yaa Jenius Edu luv luv","rating":5},{"nama":"Nasywa","ket":"Siswa • testimoni 2024","isi":"Belajar disini asyik sekali, gurunya juga asyik. Banyak latihan soal dan banyak permainan, jadi aku gak pernah bosen kalau les disini","rating":5},{"nama":"Adel","ket":"Siswa • testimoni 2024","isi":"Belajar di Jenius itu menyenangkan, karena suasana belajar yang seru dan santai. Penjelasan guru nya juga gampang dimengerti, sehingga aku terbantu buat memahami pelajaran. Terimakasih Jenius","rating":5},{"nama":"Orang tua Nissa","ket":"Orang tua siswa • testimoni 2023","isi":"Alhamdulillah Nissa langsung happy banget cerita hari pertamanya les. Terima kasih sebelumnya miss","rating":null},{"nama":"Raisa","ket":"Alumni • dokumentasi testimoni","isi":"Belajar di jenius itu metodenya santai dan asik banget, tapi tetap pada tujuan awal yang saya inginkan. Alhamdulillah lulus dengan hasil yang memuaskan dan keterima di SMA yang saya pilih, terimakasih jenius","rating":null},{"nama":"Clarence","ket":"Alumni • dokumentasi testimoni","isi":"Senang bisa belajar di jenius, kita bisa konsultasi kapan aja. Cara belajarnya juga seru banget, mudah dimengerti. Karena jenius, jadi mudah memahami pelajaran di sekolah, pokoknya makasih jenius!!!","rating":null},{"nama":"Christabel","ket":"Alumni • dokumentasi testimoni","isi":"suasana belajar di jenius tuh menyenangkan. gurunya asikk dan materi yg disampaikan jg lebih mudah dipahami. trus ketemu temen2 yg ngga kalah seruu, pokoknya seneng bgt bs jadi bagian dr jenius","rating":null},{"nama":"Alvin","ket":"Alumni • dokumentasi testimoni","isi":"Jujur sangat berkesan les di Jenius, Terima kasih atas tutor soal-soalnya","rating":null}]; // Testimoni arsip 2023–2024, transkripsi dari materi asli yang diizinkan.
