@@ -85,6 +85,28 @@ async function openTemanExam(exam){
   const title=el('h2','',data.title||exam.title||'Ujian'),subtitle=el('p','',''+questions.length+' soal · Kerjakan dengan tenang dan teliti');
   const clock=el('div','teman-exam-clock'),clockLabel=el('span','','Sisa Waktu'),clockValue=el('strong','','--:--');clock.append(clockLabel,clockValue);headerCopy.append(title,subtitle);header.append(headerCopy,clock);
   const focus=el('div','teman-exam-focus','Jawaban disimpan otomatis saat koneksi tersedia. Perhatikan status penyimpanan di bawah.');
+  const focusPanel=el('div','teman-exam-monitor'),focusText=el('span','','Mode ujian: layar penuh belum aktif.'),fullBtn=el('button','','Aktifkan Layar Penuh');fullBtn.type='button';focusPanel.append(focusText,fullBtn);
+  const auditKey='jenius-exam-focus-'+data.id;
+  let audit;try{audit=JSON.parse(localStorage.getItem(auditKey)||'null');}catch(_){}
+  if(!audit||typeof audit!=='object')audit={count:0,totalMs:0,awaySince:null,events:[]};
+  audit.count=Number(audit.count)||0;audit.totalMs=Number(audit.totalMs)||0;if(!Array.isArray(audit.events))audit.events=[];
+  const storeAudit=()=>{try{localStorage.setItem(auditKey,JSON.stringify(audit));}catch(_){}};
+  const fmt=ms=>{const sec=Math.floor(Math.max(0,ms)/1000);return Math.floor(sec/60)+' menit '+String(sec%60).padStart(2,'0')+' detik';};
+  const focusStats=el('div','teman-exam-focus-stats');
+  const isAway=()=>document.hidden||!document.hasFocus()||document.fullscreenElement!==shell;
+  const updateAudit=()=>{const ms=audit.totalMs+(audit.awaySince?Math.max(0,Date.now()-audit.awaySince):0);focusStats.textContent='Tercatat keluar '+audit.count+' kali · Total '+fmt(ms);focusText.textContent=document.fullscreenElement===shell?'Layar penuh aktif. Tetap berada di halaman ujian.':'Layar penuh tidak aktif. Klik tombol untuk mengaktifkannya.';fullBtn.textContent=document.fullscreenElement===shell?'Layar Penuh Aktif':'Aktifkan Layar Penuh';};
+  const beginAway=()=>{if(activeExam!==data||audit.awaySince)return;audit.awaySince=Date.now();audit.count++;audit.events.push({type:'leave',at:new Date().toISOString()});storeAudit();updateAudit();};
+  const endAway=()=>{if(!audit.awaySince)return;const now=Date.now();audit.totalMs+=Math.max(0,now-audit.awaySince);audit.events.push({type:'return',at:new Date(now).toISOString(),durationMs:now-audit.awaySince});audit.awaySince=null;storeAudit();updateAudit();};
+  const onFocusChange=()=>{if(activeExam!==data)return;if(isAway())beginAway();else endAway();updateAudit();};
+  const onPageHide=()=>{if(activeExam===data)beginAway();};
+  document.addEventListener('visibilitychange',onFocusChange);
+  document.addEventListener('fullscreenchange',onFocusChange);
+  window.addEventListener('blur',onFocusChange);
+  window.addEventListener('focus',onFocusChange);
+  window.addEventListener('pagehide',onPageHide);
+  const stopMonitor=()=>{document.removeEventListener('visibilitychange',onFocusChange);document.removeEventListener('fullscreenchange',onFocusChange);window.removeEventListener('blur',onFocusChange);window.removeEventListener('focus',onFocusChange);window.removeEventListener('pagehide',onPageHide);endAway();if(document.fullscreenElement===shell)document.exitFullscreen().catch(()=>{});};
+  fullBtn.onclick=async()=>{try{await shell.requestFullscreen();}catch(_){focusText.textContent='Browser menolak layar penuh. Izinkan fullscreen lalu coba lagi.';}updateAudit();};
+  const initialAudit=()=>{if(audit.awaySince&&!isAway())endAway();else if(isAway())beginAway();updateAudit();};
   const layout=el('div','teman-exam-layout'),left=el('div','teman-exam-left'),right=el('aside','teman-exam-sidebar');
   const notice=el('div','teman-exam-notice','Jawaban disimpan otomatis saat koneksi tersedia. Perhatikan status penyimpanan di bawah.');
   const questionCard=el('div','teman-exam-question-card'),saveBar=el('div','teman-exam-savebar');
@@ -122,7 +144,7 @@ async function openTemanExam(exam){
     if(result.error)throw result.error;
     data.revision=result.data.revision;
     examDirty=Object.keys(examAnswers).some(k=>examAnswers[k]!==snapshot[k]);
-    if(result.data.submitted_at){clearInterval(examTimer);activeExam=null;await loadStudentExams();return true;}
+    if(result.data.submitted_at){clearInterval(examTimer);stopMonitor();activeExam=null;await loadStudentExams();return true;}
     status.textContent=examDirty?'Ada jawaban baru yang belum tersimpan.':'Jawaban terakhir sudah tersimpan.';return true;
    }catch(err){status.textContent='Gagal menyimpan: '+(err.message||'Periksa koneksi.');return false;}
    finally{examSaving=false;save.disabled=false;submit.disabled=false;}
@@ -131,9 +153,9 @@ async function openTemanExam(exam){
   submit.onclick=async()=>{if(!confirm('Yakin ingin mengumpulkan ujian? Jawaban tidak dapat diubah setelah dikumpulkan.'))return;examSubmitting=true;await persist(true);examSubmitting=false;};
   saveBar.append(status,save);left.append(notice,questionCard,saveBar);
   right.append(navHeading,progress,navGrid,legend,reminder,submit,submitNote);
-  layout.append(left,right);shell.append(header,focus,layout);root.replaceChildren(shell);renderQuestion();
+  layout.append(left,right);shell.append(header,focusPanel,focusStats,focus,layout);root.replaceChildren(shell);renderQuestion();initialAudit();
   clearInterval(examTimer);
-  const deadline=new Date(data.deadline).getTime();const updateClock=()=>{if(activeExam!==data)return;if(!Number.isFinite(deadline)){clockValue.textContent='—';return;}const remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));clockValue.textContent=Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');if(remaining===0&&!examSubmitting){examSubmitting=true;persist(true).finally(()=>{examSubmitting=false;});}};
+  const deadline=new Date(data.deadline).getTime();const updateClock=()=>{if(activeExam!==data)return;updateAudit();if(!Number.isFinite(deadline)){clockValue.textContent='—';return;}const remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));clockValue.textContent=Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');if(remaining===0&&!examSubmitting){examSubmitting=true;persist(true).finally(()=>{examSubmitting=false;});}};
   updateClock();examTimer=setInterval(()=>{updateClock();if(examDirty&&!examSaving&&!examSubmitting)persist();},5000);
  }catch(err){root.replaceChildren();root.append(elExamError(err));}
 }
