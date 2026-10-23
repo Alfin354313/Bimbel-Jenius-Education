@@ -90,12 +90,44 @@ async function openTemanExam(exam){
   if(!audit||typeof audit!=='object')audit={count:0,totalMs:0,awaySince:null,events:[]};
   audit.count=Number(audit.count)||0;audit.totalMs=Number(audit.totalMs)||0;if(!Array.isArray(audit.events))audit.events=[];
   const storeAudit=()=>{try{localStorage.setItem(auditKey,JSON.stringify(audit));}catch(_){}};
+  // Persist exam focus events to Supabase, with a local retry queue for brief outages.
+  const queueKey='jenius-exam-activity-queue';
+  let flushing=false;
+  const readQueue=()=>{try{const q=JSON.parse(localStorage.getItem(queueKey)||'[]');return Array.isArray(q)?q:[];}catch(_){return [];}};
+  const writeQueue=q=>{try{localStorage.setItem(queueKey,JSON.stringify(q));}catch(_){}};
+  const flushEvents=async()=>{
+    if(flushing||!navigator.onLine||!client)return;
+    flushing=true;
+    try{
+      const {data:userData,error:userError}=await client.auth.getUser();
+      if(userError||!userData?.user?.id)return;
+      const userId=userData.user.id;
+      let pending=readQueue();
+      for(const event of pending){
+        if(event.student_user_id!==userId)continue;
+        const {error}=await client.from('jenius_exam_activity').upsert(event,{onConflict:'id'});
+        if(error){console.warn('Exam activity sync pending:',error.message);break;}
+        pending=readQueue().filter(e=>e.id!==event.id);
+        writeQueue(pending);
+      }
+    }catch(err){console.warn('Exam activity sync pending:',err);}
+    finally{flushing=false;}
+  };
+  const queueEvent=(type,at,duration)=>{
+    client?.auth.getUser().then(({data:userData})=>{
+      const userId=userData?.user?.id;if(!userId)return;
+      const event={id:crypto.randomUUID(),student_user_id:userId,exam_id:String(data.id),exam_title:String(data.title||exam.title||'Ujian'),event_type:type,occurred_at:at,duration_ms:duration??null};
+      writeQueue([...readQueue(),event]);void flushEvents();
+    }).catch(()=>{});
+  };
+  window.addEventListener('online',flushEvents);
+  void flushEvents();
   const fmt=ms=>{const sec=Math.floor(Math.max(0,ms)/1000);return Math.floor(sec/60)+' menit '+String(sec%60).padStart(2,'0')+' detik';};
   const focusStats=el('div','teman-exam-focus-stats');
   const isAway=()=>document.hidden||!document.hasFocus()||document.fullscreenElement!==shell;
   const updateAudit=()=>{const ms=audit.totalMs+(audit.awaySince?Math.max(0,Date.now()-audit.awaySince):0);focusStats.textContent='Tercatat keluar '+audit.count+' kali · Total '+fmt(ms);focusText.textContent=document.fullscreenElement===shell?'Layar penuh aktif. Tetap berada di halaman ujian.':'Layar penuh tidak aktif. Klik tombol untuk mengaktifkannya.';fullBtn.textContent=document.fullscreenElement===shell?'Layar Penuh Aktif':'Aktifkan Layar Penuh';};
-  const beginAway=()=>{if(activeExam!==data||audit.awaySince)return;audit.awaySince=Date.now();audit.count++;audit.events.push({type:'leave',at:new Date().toISOString()});storeAudit();updateAudit();};
-  const endAway=()=>{if(!audit.awaySince)return;const now=Date.now();audit.totalMs+=Math.max(0,now-audit.awaySince);audit.events.push({type:'return',at:new Date(now).toISOString(),durationMs:now-audit.awaySince});audit.awaySince=null;storeAudit();updateAudit();};
+  const beginAway=()=>{if(activeExam!==data||audit.awaySince)return;audit.awaySince=Date.now();audit.count++;const at=new Date().toISOString();audit.events.push({type:'leave',at});queueEvent('leave',at,null);storeAudit();updateAudit();};
+  const endAway=()=>{if(!audit.awaySince)return;const now=Date.now();audit.totalMs+=Math.max(0,now-audit.awaySince);const at=new Date(now).toISOString(),durationMs=now-audit.awaySince;audit.events.push({type:'return',at,durationMs});queueEvent('return',at,durationMs);audit.awaySince=null;storeAudit();updateAudit();};
   const onFocusChange=()=>{if(activeExam!==data)return;if(isAway())beginAway();else endAway();updateAudit();};
   const onPageHide=()=>{if(activeExam===data)beginAway();};
   document.addEventListener('visibilitychange',onFocusChange);
