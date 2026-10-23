@@ -84,7 +84,6 @@ async function openTemanExam(exam){
   const shell=el('div','teman-exam-runner'),header=el('div','teman-exam-header'),headerCopy=el('div');
   const title=el('h2','',data.title||exam.title||'Ujian'),subtitle=el('p','',''+questions.length+' soal · Kerjakan dengan tenang dan teliti');
   const clock=el('div','teman-exam-clock'),clockLabel=el('span','','Sisa Waktu'),clockValue=el('strong','','--:--');clock.append(clockLabel,clockValue);headerCopy.append(title,subtitle);header.append(headerCopy,clock);
-  const focus=el('div','teman-exam-focus','Jawaban disimpan otomatis saat koneksi tersedia. Perhatikan status penyimpanan di bawah.');
   const focusPanel=el('div','teman-exam-monitor'),focusText=el('span','','Mode ujian: layar penuh belum aktif.'),fullBtn=el('button','','Aktifkan Layar Penuh');fullBtn.type='button';focusPanel.append(focusText,fullBtn);
   const auditKey='jenius-exam-focus-'+data.id;
   let audit;try{audit=JSON.parse(localStorage.getItem(auditKey)||'null');}catch(_){}
@@ -108,7 +107,6 @@ async function openTemanExam(exam){
   fullBtn.onclick=async()=>{try{await shell.requestFullscreen();}catch(_){focusText.textContent='Browser menolak layar penuh. Izinkan fullscreen lalu coba lagi.';}updateAudit();};
   const initialAudit=()=>{if(audit.awaySince&&!isAway())endAway();else if(isAway())beginAway();updateAudit();};
   const layout=el('div','teman-exam-layout'),left=el('div','teman-exam-left'),right=el('aside','teman-exam-sidebar');
-  const notice=el('div','teman-exam-notice','Jawaban disimpan otomatis saat koneksi tersedia. Perhatikan status penyimpanan di bawah.');
   const questionCard=el('div','teman-exam-question-card'),saveBar=el('div','teman-exam-savebar');
   const status=el('span','', 'Jawaban terakhir sudah tersimpan.');status.setAttribute('aria-live','polite');
   const save=el('button','','Simpan Jawaban');save.type='button';
@@ -151,9 +149,9 @@ async function openTemanExam(exam){
   }
   save.onclick=()=>persist();
   submit.onclick=async()=>{if(!confirm('Yakin ingin mengumpulkan ujian? Jawaban tidak dapat diubah setelah dikumpulkan.'))return;examSubmitting=true;await persist(true);examSubmitting=false;};
-  saveBar.append(status,save);left.append(notice,questionCard,saveBar);
+  saveBar.append(status,save);left.append(questionCard,saveBar);
   right.append(navHeading,progress,navGrid,legend,reminder,submit,submitNote);
-  layout.append(left,right);shell.append(header,focusPanel,focusStats,focus,layout);root.replaceChildren(shell);renderQuestion();initialAudit();
+  layout.append(left,right);shell.append(header,focusPanel,focusStats,layout);root.replaceChildren(shell);renderQuestion();initialAudit();
   clearInterval(examTimer);
   const deadline=new Date(data.deadline).getTime();const updateClock=()=>{if(activeExam!==data)return;updateAudit();if(!Number.isFinite(deadline)){clockValue.textContent='—';return;}const remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));clockValue.textContent=Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');if(remaining===0&&!examSubmitting){examSubmitting=true;persist(true).finally(()=>{examSubmitting=false;});}};
   updateClock();examTimer=setInterval(()=>{updateClock();if(examDirty&&!examSaving&&!examSubmitting)persist();},5000);
