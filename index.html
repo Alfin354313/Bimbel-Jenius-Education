@@ -236,6 +236,17 @@ section{scroll-margin-top:18px}
 .ecosystem-card .ecosystem-link--muted{background:#e1eaf4;color:#31516e}
 @media(max-width:720px){.ecosystem{padding:44px 0}.ecosystem-grid{grid-template-columns:1fr}.ecosystem-card{padding:22px}}
 
+.ecosystem-card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;overflow:hidden}
+.ecosystem-card:before{content:"";position:absolute;top:0;right:0;width:150px;height:150px;transform:translate(35%,-40%);background:radial-gradient(circle,#d8ebff 0%,transparent 72%);pointer-events:none}
+.ecosystem-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(21,67,107,.13);border-color:#a8cffa}
+.ecosystem-card .ecosystem-icon{color:#1e6fb8}
+.ecosystem-card .ecosystem-icon svg{width:27px;height:27px;display:block}
+.ecosystem-card--osn .ecosystem-icon{background:#dceaff;color:#174b87}
+.ecosystem-card .ecosystem-link{transition:background .2s ease,transform .2s ease}
+.ecosystem-card .ecosystem-link:focus-visible{outline:3px solid #69aaf3;outline-offset:3px}
+.ecosystem-card .ecosystem-link--muted:hover{background:#c9def6;color:#153d69}
+@media(prefers-reduced-motion:reduce){.ecosystem-card,.ecosystem-card .ecosystem-link{transition:none}.ecosystem-card:hover{transform:none}}
+@media(max-width:720px){.ecosystem-card .ecosystem-link{width:100%;text-align:center}.ecosystem-card{gap:12px}}
 </style>
 <script type="application/ld+json">
 {
@@ -317,18 +328,18 @@ section{scroll-margin-top:18px}
     <p class="ecosystem-lead">Kenali layanan pendidikan Jenius Education. Mulai dari pendampingan pelajaran sekolah hingga persiapan kompetisi sains.</p>
     <div class="ecosystem-grid">
       <article class="ecosystem-card">
-        <span class="ecosystem-icon" aria-hidden="true">📘</span>
+        <span class="ecosystem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14M3 18V5a2 2 0 0 1 2-2h4a3 3 0 0 1 3 3 3 3 0 0 1 3-3h4a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2h-4a3 3 0 0 0-3 3 3 3 0 0 0-3-3H5a2 2 0 0 0-2 2Z"/></svg></span>
         <span class="ecosystem-status">Layanan tersedia</span>
         <h3>Teman Belajar</h3>
         <p>Les privat SD, SMP, dan SMA dengan pendampingan sesuai kebutuhan siswa, baik tatap muka maupun online.</p>
         <a class="ecosystem-link" href="#program">Jelajahi Teman Belajar →</a>
       </article>
       <article class="ecosystem-card ecosystem-card--osn">
-        <span class="ecosystem-icon" aria-hidden="true">🏆</span>
+        <span class="ecosystem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8m-4-4v4M7 4h10v5a5 5 0 0 1-10 0V4Zm0 2H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"/></svg></span>
         <span class="ecosystem-status">Sedang dikembangkan</span>
         <h3>Jenius Edu OSN</h3>
         <p>Rencana platform persiapan Olimpiade Sains Nasional untuk siswa SD, SMP, dan SMA, dengan latihan soal serta simulasi.</p>
-        <a class="ecosystem-link ecosystem-link--muted" href="#daftar" aria-label="Konsultasi tentang Jenius Edu OSN">Tanya tentang OSN →</a>
+        <a class="ecosystem-link ecosystem-link--muted" href="https://wa.me/628164855461?text=Halo%20Jenius%20Education%2C%20saya%20ingin%20bertanya%20tentang%20program%20Jenius%20Edu%20OSN." target="_blank" rel="noopener noreferrer" aria-label="Konsultasi Jenius Edu OSN melalui WhatsApp">Tanya tentang OSN →</a>
       </article>
     </div>
   </div>
