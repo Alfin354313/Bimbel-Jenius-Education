@@ -105,8 +105,8 @@ async function openTemanExam(exam){
       let pending=readQueue();
       for(const event of pending){
         if(event.student_user_id!==userId)continue;
-        const {error}=await client.from('jenius_exam_activity').upsert(event,{onConflict:'id'});
-        if(error){console.warn('Exam activity sync pending:',error.message);break;}
+        const {error}=await client.from('jenius_exam_activity').insert(event);
+        if(error&&error.code!=='23505'){console.warn('Exam activity sync pending:',error.message);break;}
         pending=readQueue().filter(e=>e.id!==event.id);
         writeQueue(pending);
       }
