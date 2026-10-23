@@ -217,6 +217,54 @@ section{scroll-margin-top:18px}
 
 
 .review-form-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:start;max-width:1040px;margin:42px auto 0;padding:30px;border:1px solid var(--line);border-radius:24px;background:#F6FAFE}.review-form-wrap h3{font-size:1.7rem;margin:0 0 10px}.review-form-wrap p{color:var(--muted);line-height:1.6}.review-submit-form{display:grid;gap:13px}.review-submit-form>label{display:grid;gap:5px;font-weight:700}.review-submit-form input:not([type=radio]):not([type=checkbox]),.review-submit-form textarea,.review-submit-form select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #B9D4E9;border-radius:11px;background:#fff;font:inherit;color:var(--ink)}.review-submit-form fieldset{border:1px solid #B9D4E9;border-radius:12px;padding:10px 14px}.review-submit-form legend{font-weight:700}.review-stars{display:flex;flex-wrap:wrap;gap:12px}.review-stars label{display:flex;align-items:center;gap:3px;color:#B76D08;font-size:1.4rem;cursor:pointer}.review-stars span{font-size:.8rem;color:var(--muted)}.review-consent{display:flex!important;flex-direction:row;align-items:start;font-size:.82rem;font-weight:500!important;line-height:1.5}.review-consent input{margin-top:4px}.review-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}#reviewFormStatus{font-size:.88rem;margin:0}@media(max-width:760px){.review-form-wrap{grid-template-columns:1fr;padding:20px;gap:12px}}
+
+/* Jenius Education ecosystem - additive, scoped landing section */
+.ecosystem{padding:64px 0;background:linear-gradient(160deg,#eef7ff 0%,#fff 72%);color:#15436b}
+.ecosystem .ecosystem-kicker{display:inline-block;font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:#1e6fb8;margin-bottom:12px}
+.ecosystem h2{font-size:clamp(1.85rem,3.5vw,2.7rem);max-width:740px}
+.ecosystem .ecosystem-lead{color:#476682;max-width:690px;margin:15px 0 28px}
+.ecosystem-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.ecosystem-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:13px;background:#fff;border:1px solid #d3e6f7;border-radius:22px;padding:28px;box-shadow:0 12px 35px rgba(21,67,107,.07)}
+.ecosystem-card--osn{background:linear-gradient(145deg,#f6faff,#eaf3ff)}
+.ecosystem-card .ecosystem-icon{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;background:#e5f3ff;font-size:25px}
+.ecosystem-card h3{color:#15436b;font-size:1.45rem}
+.ecosystem-card p{color:#476682;margin:0;flex:1}
+.ecosystem-card .ecosystem-status{font-size:12px;font-weight:800;border-radius:99px;background:#e6f6ee;color:#176544;padding:5px 11px}
+.ecosystem-card--osn .ecosystem-status{background:#dceafa;color:#174b87}
+.ecosystem-card .ecosystem-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:12px;padding:9px 18px;background:#15436b;color:#fff;text-decoration:none;font-weight:800}
+.ecosystem-card .ecosystem-link:hover,.ecosystem-card .ecosystem-link:focus-visible{background:#1e6fb8;color:#fff}
+.ecosystem-card .ecosystem-link--muted{background:#e1eaf4;color:#31516e}
+@media(max-width:720px){.ecosystem{padding:44px 0}.ecosystem-grid{grid-template-columns:1fr}.ecosystem-card{padding:22px}}
+
+.ecosystem-card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;overflow:hidden}
+.ecosystem-card:before{content:"";position:absolute;top:0;right:0;width:150px;height:150px;transform:translate(35%,-40%);background:radial-gradient(circle,#d8ebff 0%,transparent 72%);pointer-events:none}
+.ecosystem-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(21,67,107,.13);border-color:#a8cffa}
+.ecosystem-card .ecosystem-icon{color:#1e6fb8}
+.ecosystem-card .ecosystem-icon svg{width:27px;height:27px;display:block}
+.ecosystem-card--osn .ecosystem-icon{background:#dceaff;color:#174b87}
+.ecosystem-card .ecosystem-link{transition:background .2s ease,transform .2s ease}
+.ecosystem-card .ecosystem-link:focus-visible{outline:3px solid #69aaf3;outline-offset:3px}
+.ecosystem-card .ecosystem-link--muted:hover{background:#c9def6;color:#153d69}
+@media(prefers-reduced-motion:reduce){.ecosystem-card,.ecosystem-card .ecosystem-link{transition:none}.ecosystem-card:hover{transform:none}}
+@media(max-width:720px){.ecosystem-card .ecosystem-link{width:100%;text-align:center}.ecosystem-card{gap:12px}}
+
+/* Mobile usability: compact floating contact button, readable service cards. */
+@media(max-width:720px){
+  .ecosystem{scroll-margin-top:12px}
+  .ecosystem h2{font-size:clamp(1.7rem,7vw,2.15rem);line-height:1.18}
+  .ecosystem .ecosystem-lead{font-size:1rem;line-height:1.65}
+  .ecosystem-card{min-width:0}
+  .ecosystem-card p{overflow-wrap:anywhere}
+  .ecosystem-card .ecosystem-link{min-height:48px}
+  .wa-float{width:54px;height:54px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:8px;justify-content:center;box-shadow:3px 3px 0 var(--ink)}
+  .wa-float-text{display:none}
+  .wa-float-icon{flex:0 0 34px}
+}
+@media(max-width:380px){
+  .ecosystem-card{padding:18px}
+  .ecosystem-card h3{font-size:1.3rem}
+}
+
 </style>
 <script type="application/ld+json">
 {
@@ -256,7 +304,7 @@ section{scroll-margin-top:18px}
   ],
   "@id": "https://jenius-edu.my.id/#organization",
   "logo": "https://jenius-edu.my.id/assets/logo.png",
-  "telephone": "+628164855461"
+  "telephone": "+62895708048200"
 }
 </script>
 </head>
@@ -264,7 +312,7 @@ section{scroll-margin-top:18px}
 <div class="wrap">
 <header>
   <a class="logo" href="#" aria-label="Jenius Edu"><img src="/assets/logo.png" alt="" width="44" height="44"><span>Jenius Edu</span></a>
-  <nav><a href="#program">Program</a><a href="#keunggulan">Keunggulan</a><a href="#suasana">Suasana</a><a href="#percaya">Proses</a><a href="#ulasan">Ulasan</a><a href="#faq">FAQ</a><a href="#daftar" class="btn" style="padding:8px 18px;margin-left:18px">Daftar</a></nav>
+  <nav><a href="#layanan">Layanan</a><a href="#program">Program</a><a href="#keunggulan">Keunggulan</a><a href="#suasana">Suasana</a><a href="#percaya">Proses</a><a href="#ulasan">Ulasan</a><a href="#faq">FAQ</a><a href="#daftar" class="btn" style="padding:8px 18px;margin-left:18px">Daftar</a></nav>
 </header>
 </div>
 
@@ -289,6 +337,31 @@ section{scroll-margin-top:18px}
     </div>
   </div>
 </div>
+
+
+<section id="layanan" class="ecosystem" aria-labelledby="ecosystem-title">
+  <div class="wrap">
+    <span class="ecosystem-kicker">Ekosistem Jenius Education</span>
+    <h2 id="ecosystem-title">Satu tempat untuk bertumbuh, belajar, dan berprestasi</h2>
+    <p class="ecosystem-lead">Kenali layanan pendidikan Jenius Education. Mulai dari pendampingan pelajaran sekolah hingga persiapan kompetisi sains.</p>
+    <div class="ecosystem-grid">
+      <article class="ecosystem-card">
+        <span class="ecosystem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14M3 18V5a2 2 0 0 1 2-2h4a3 3 0 0 1 3 3 3 3 0 0 1 3-3h4a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2h-4a3 3 0 0 0-3 3 3 3 0 0 0-3-3H5a2 2 0 0 0-2 2Z"/></svg></span>
+        <span class="ecosystem-status">Layanan tersedia</span>
+        <h3>Teman Belajar</h3>
+        <p>Les privat SD, SMP, dan SMA dengan pendampingan sesuai kebutuhan siswa, baik tatap muka maupun online.</p>
+        <a class="ecosystem-link" href="#program">Jelajahi Teman Belajar →</a>
+      </article>
+      <article class="ecosystem-card ecosystem-card--osn">
+        <span class="ecosystem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8m-4-4v4M7 4h10v5a5 5 0 0 1-10 0V4Zm0 2H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"/></svg></span>
+        <span class="ecosystem-status">Sedang dikembangkan</span>
+        <h3>Jenius Edu OSN</h3>
+        <p>Rencana platform persiapan Olimpiade Sains Nasional untuk siswa SD, SMP, dan SMA, dengan latihan soal serta simulasi.</p>
+        <a class="ecosystem-link ecosystem-link--muted" href="https://wa.me/62895708048200?text=Halo%20Jenius%20Education%2C%20saya%20ingin%20bertanya%20tentang%20program%20Jenius%20Edu%20OSN." target="_blank" rel="noopener noreferrer" aria-label="Konsultasi Jenius Edu OSN melalui WhatsApp">Tanya tentang OSN →</a>
+      </article>
+    </div>
+  </div>
+</section>
 
 <section id="program">
   <div class="wrap">
@@ -452,7 +525,7 @@ section{scroll-margin-top:18px}
 
 
 
-<a class="wa-float" href="https://wa.me/628164855461?text=Halo%20Jenius%20Edu%2C%20saya%20ingin%20konsultasi%20program%20belajar." target="_blank" rel="noopener" aria-label="Chat WhatsApp Jenius Edu"><span class="wa-float-icon">💬</span><span class="wa-float-text">Konsultasi WhatsApp</span></a>
+<a class="wa-float" href="https://wa.me/62895708048200?text=Halo%20Jenius%20Edu%2C%20saya%20ingin%20konsultasi%20program%20belajar." target="_blank" rel="noopener" aria-label="Chat WhatsApp Jenius Edu"><span class="wa-float-icon">💬</span><span class="wa-float-text">Konsultasi WhatsApp</span></a>
 
 <footer><div class="wrap">© 2026 Jenius Edu. Bimbingan belajar SD, SMP, dan SMA.</div></footer>
 
@@ -461,7 +534,7 @@ section{scroll-margin-top:18px}
 /* Privacy-friendly local event hooks. Add a consent-aware analytics provider separately if desired. */
 function trackJenius(eventName){try{if(typeof window.gtag==="function")window.gtag("event",eventName);if(typeof window.plausible==="function")window.plausible(eventName)}catch(e){console.warn("Event tracking unavailable",e)}}
 document.addEventListener("click",function(e){var a=e.target.closest('a[href*="wa.me/"]');if(a)trackJenius("whatsapp_click")});
-var WA="628164855461"; // ganti dengan nomor WhatsApp Anda (awali 62, tanpa +)
+var WA="62895708048200"; // ganti dengan nomor WhatsApp Anda (awali 62, tanpa +)
 document.getElementById("f").addEventListener("submit",function(e){
   e.preventDefault();
   var d=new FormData(e.target);
