@@ -73,49 +73,71 @@ async function enhanceStudentHome(){if(currentPortalRole!=='murid'||!client)retu
 let activeExam=null,examAnswers={},examTimer=null,examSaving=false,examDirty=false,examSubmitting=false;
 async function openTemanExam(exam){
  const root=$('examSectionContent');if(!root)return;
- const previous=root.innerHTML;root.replaceChildren();
- const note=document.createElement('p');note.className='muted';note.textContent='Membuka ujian…';root.append(note);
+ root.replaceChildren();const loading=document.createElement('p');loading.textContent='Membuka ujian…';root.append(loading);
  try{
   const response=await client.rpc('jenius_exam_attempt',{p_id:exam.id,p_start:!exam.started_at});
   if(response.error)throw response.error;
   const data=response.data;if(data.submitted_at){await loadStudentExams();return;}
   activeExam=data;examAnswers={...(data.answers||{})};examDirty=false;examSubmitting=false;
-  const shell=document.createElement('div');shell.className='teman-exam-runner';
-  const title=document.createElement('h2');title.textContent=data.title||exam.title||'Ujian';
-  const clock=document.createElement('strong');clock.className='teman-exam-clock';
-  const status=document.createElement('p');status.className='muted';status.setAttribute('aria-live','polite');status.textContent='Jawaban disimpan otomatis ke database.';
-  const questions=document.createElement('div');const actions=document.createElement('div');actions.className='teman-exam-actions';
-  const save=document.createElement('button');save.type='button';save.textContent='Simpan Jawaban';
-  const submit=document.createElement('button');submit.type='button';submit.textContent='Kumpulkan Ujian';submit.className='exam-detail-action';
+  const questions=data.questions||[];let index=0;
+  const el=(tag,cls,txt)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=String(txt);return n;};
+  const shell=el('div','teman-exam-runner'),header=el('div','teman-exam-header'),headerCopy=el('div');
+  const title=el('h2','',data.title||exam.title||'Ujian'),subtitle=el('p','',''+questions.length+' soal · Kerjakan dengan tenang dan teliti');
+  const clock=el('div','teman-exam-clock'),clockLabel=el('span','','Sisa Waktu'),clockValue=el('strong','','--:--');clock.append(clockLabel,clockValue);headerCopy.append(title,subtitle);header.append(headerCopy,clock);
+  const focus=el('div','teman-exam-focus','Jawaban disimpan otomatis saat koneksi tersedia. Perhatikan status penyimpanan di bawah.');
+  const layout=el('div','teman-exam-layout'),left=el('div','teman-exam-left'),right=el('aside','teman-exam-sidebar');
+  const notice=el('div','teman-exam-notice','Jawaban disimpan otomatis saat koneksi tersedia. Perhatikan status penyimpanan di bawah.');
+  const questionCard=el('div','teman-exam-question-card'),saveBar=el('div','teman-exam-savebar');
+  const status=el('span','', 'Jawaban terakhir sudah tersimpan.');status.setAttribute('aria-live','polite');
+  const save=el('button','','Simpan Jawaban');save.type='button';
+  const navHeading=el('div','teman-exam-nav-heading'),navTitle=el('h3','','Navigasi Soal'),navCount=el('small','','0 dari '+questions.length+' soal terjawab');
+  navHeading.append(navTitle,navCount);
+  const progress=el('progress','teman-exam-progress');progress.max=questions.length;progress.value=0;
+  const navGrid=el('div','teman-exam-nav-grid');
+  const legend=el('div','teman-exam-legend');[['answered','Terjawab'],['empty','Belum dijawab'],['current','Sedang dibuka']].forEach(([c,t])=>{const item=el('span','');item.append(el('i',c),document.createTextNode(t));legend.append(item);});
+  const reminder=el('div','teman-exam-reminder','Tetap tenang dan kerjakan dengan jujur. Percaya pada kemampuanmu.');
+  const submit=el('button','teman-exam-submit','Kumpulkan Ujian');submit.type='button';
+  const submitNote=el('small','teman-exam-submit-note','Periksa jawabanmu sebelum mengumpulkan.');
+  const navButtons=questions.map((q,i)=>{const button=el('button','',i+1);button.type='button';button.onclick=()=>{index=i;renderQuestion();};navGrid.append(button);return button;});
+  function updateProgress(){
+   const count=questions.filter(q=>String(examAnswers[q.id]||'').trim()).length;
+   progress.value=count;navCount.textContent=count+' dari '+questions.length+' soal terjawab';
+   navButtons.forEach((button,i)=>{button.className=i===index?'current':String(examAnswers[questions[i].id]||'').trim()?'answered':'';button.setAttribute('aria-label','Soal '+(i+1)+(button.className==='answered'?' sudah dijawab':''));});
+  }
+  function changed(id,value){examAnswers[id]=value;examDirty=true;status.textContent='Ada jawaban yang belum tersimpan.';updateProgress();}
+  function renderQuestion(){
+   questionCard.replaceChildren();const q=questions[index];if(!q){questionCard.append(el('p','','Belum ada soal untuk ujian ini.'));return;}
+   const meta=el('div','teman-exam-qmeta');meta.append(el('strong','','Soal '+(index+1)+' dari '+questions.length),el('span','',q.question_type==='mcq'?'Pilihan Ganda':'Uraian'));questionCard.append(meta,el('h3','teman-exam-prompt',q.prompt||''));
+   if(q.question_type==='mcq'){
+    (q.options||[]).forEach((option,j)=>{const letter=String.fromCharCode(65+j),label=el('label','teman-exam-option'),input=el('input');input.type='radio';input.name='teman-q-'+q.id;input.value=letter;input.checked=examAnswers[q.id]===letter;input.onchange=()=>changed(q.id,letter);label.append(input,el('b','teman-exam-letter',letter),el('span','',option));questionCard.append(label);});
+   }else{const area=el('textarea','teman-exam-essay');area.rows=7;area.maxLength=10000;area.value=examAnswers[q.id]||'';area.oninput=()=>changed(q.id,area.value);questionCard.append(area);}
+   const controls=el('div','teman-exam-step-actions'),prev=el('button','','‹ Sebelumnya'),next=el('button','primary','Berikutnya ›');prev.type=next.type='button';prev.disabled=index===0;next.disabled=index===questions.length-1;prev.onclick=()=>{index--;renderQuestion();};next.onclick=()=>{index++;renderQuestion();};controls.append(prev,next);questionCard.append(controls);updateProgress();
+  }
   async function persist(final=false){
    if(examSaving)return false;
    examSaving=true;save.disabled=true;submit.disabled=true;status.textContent='Menyimpan jawaban…';
+   const snapshot={...examAnswers};
    try{
-    const result=await client.rpc('jenius_exam_answer',{p_id:data.id,p_answers:{...examAnswers},p_revision:data.revision,p_submit:final});
+    const result=await client.rpc('jenius_exam_answer',{p_id:data.id,p_answers:snapshot,p_revision:data.revision,p_submit:final});
     if(result.error)throw result.error;
-    data.revision=result.data.revision;examDirty=false;
+    data.revision=result.data.revision;
+    examDirty=Object.keys(examAnswers).some(k=>examAnswers[k]!==snapshot[k]);
     if(result.data.submitted_at){clearInterval(examTimer);activeExam=null;await loadStudentExams();return true;}
-    status.textContent='Jawaban berhasil tersimpan.';return true;
+    status.textContent=examDirty?'Ada jawaban baru yang belum tersimpan.':'Jawaban terakhir sudah tersimpan.';return true;
    }catch(err){status.textContent='Gagal menyimpan: '+(err.message||'Periksa koneksi.');return false;}
    finally{examSaving=false;save.disabled=false;submit.disabled=false;}
   }
-  (data.questions||[]).forEach((q,i)=>{
-   const card=document.createElement('fieldset');card.className='teman-exam-question';
-   const legend=document.createElement('legend');legend.textContent='Soal '+(i+1);card.append(legend);
-   const prompt=document.createElement('p');prompt.textContent=q.prompt||'';card.append(prompt);
-   if(q.question_type==='mcq'){
-    (q.options||[]).forEach((option,j)=>{const label=document.createElement('label');label.className='teman-exam-option';const input=document.createElement('input');input.type='radio';input.name='teman-q-'+q.id;input.value=String.fromCharCode(65+j);input.checked=examAnswers[q.id]===input.value;input.onchange=()=>{examAnswers[q.id]=input.value;examDirty=true;status.textContent='Ada jawaban belum tersimpan.';};label.append(input,document.createTextNode(' '+input.value+'. '+option));card.append(label);});
-   }else{const area=document.createElement('textarea');area.rows=5;area.maxLength=10000;area.value=examAnswers[q.id]||'';area.oninput=()=>{examAnswers[q.id]=area.value;examDirty=true;status.textContent='Ada jawaban belum tersimpan.';};card.append(area);}
-   questions.append(card);
-  });
   save.onclick=()=>persist();
   submit.onclick=async()=>{if(!confirm('Yakin ingin mengumpulkan ujian? Jawaban tidak dapat diubah setelah dikumpulkan.'))return;examSubmitting=true;await persist(true);examSubmitting=false;};
-  actions.append(save,submit);shell.append(title,clock,status,questions,actions);root.replaceChildren(shell);
+  saveBar.append(status,save);left.append(notice,questionCard,saveBar);
+  right.append(navHeading,progress,navGrid,legend,reminder,submit,submitNote);
+  layout.append(left,right);shell.append(header,focus,layout);root.replaceChildren(shell);renderQuestion();
   clearInterval(examTimer);
-  const updateClock=()=>{if(activeExam!==data)return;const remaining=Math.max(0,Math.ceil((new Date(data.deadline).getTime()-Date.now())/1000));clock.textContent='Sisa waktu: '+Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');if(remaining===0&&!examSubmitting){examSubmitting=true;persist(true);}};
+  const deadline=new Date(data.deadline).getTime();const updateClock=()=>{if(activeExam!==data)return;if(!Number.isFinite(deadline)){clockValue.textContent='—';return;}const remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));clockValue.textContent=Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');if(remaining===0&&!examSubmitting){examSubmitting=true;persist(true).finally(()=>{examSubmitting=false;});}};
   updateClock();examTimer=setInterval(()=>{updateClock();if(examDirty&&!examSaving&&!examSubmitting)persist();},5000);
- }catch(err){root.replaceChildren();const p=document.createElement('p');p.textContent='Tidak dapat membuka ujian: '+(err.message||'Periksa koneksi.');root.append(p);const back=document.createElement('button');back.textContent='Kembali ke Daftar Ujian';back.onclick=loadStudentExams;root.append(back);}
+ }catch(err){root.replaceChildren();root.append(elExamError(err));}
 }
+function elExamError(err){const wrap=document.createElement('div'),p=document.createElement('p'),back=document.createElement('button');p.textContent='Tidak dapat membuka ujian: '+(err.message||'Periksa koneksi.');back.textContent='Kembali ke Daftar Ujian';back.onclick=loadStudentExams;wrap.append(p,back);return wrap;}
 
 async function loadStudentExams(){if(currentPortalRole!=='murid'||!client)return;const target=$('examSectionContent');if(!target||!target.isConnected)return;target.textContent='Memuat daftar ujian...';try{const r=await client.rpc('jenius_exam_student_list');if(r.error)throw r.error;const exams=Array.isArray(r.data?.exams)?r.data.exams:[];const total=exams.length;const done=exams.filter(e=>Boolean(e.submitted_at)).length;const scheduled=exams.filter(e=>!e.submitted_at&&(e.starts_at||e.scheduled_at)).length;if(!target.isConnected)return;target.replaceChildren();const stats=document.createElement('div');stats.className='exam-stats';[['Ujian Tersedia',total-done-scheduled,'Siap dikerjakan'],['Ujian Terjadwal',scheduled,'Sudah dijadwalkan'],['Ujian Selesai',done,'Dari seluruh ujian']].forEach(([label,value,subtitle])=>{const card=document.createElement('div');card.className='exam-stat';const t=document.createElement('span');t.textContent=label;const v=document.createElement('strong');v.textContent=String(Math.max(0,value));const small=document.createElement('span');small.textContent=subtitle;card.append(t,v,small);stats.append(card);});target.append(stats);const layout=document.createElement('div');layout.className='exam-layout';const main=document.createElement('article');main.className='dash-panel';const aside=document.createElement('article');aside.className='dash-panel';layout.append(main,aside);target.append(layout);const tools=document.createElement('div');tools.className='exam-tools';const search=document.createElement('input');search.className='exam-search';search.type='search';search.placeholder='Cari ujian atau topik...';search.setAttribute('aria-label','Cari ujian atau topik');const filters=document.createElement('div');filters.className='exam-filters';tools.append(search,filters);main.append(tools);const noticeBar=document.createElement('p');noticeBar.className='exam-integrity-notice';noticeBar.textContent='ⓘ Kerjakan dengan jujur — Kerjakan ujian secara mandiri dan jangan membagikan jawaban kepada orang lain.';main.append(noticeBar);const heading=document.createElement('div');heading.className='panel-title';const title=document.createElement('h2');title.textContent='Daftar Latihan & Ujian ('+total+')';heading.append(title);main.append(heading);const items=document.createElement('div');main.append(items);let filter='Semua';const status=e=>e.submitted_at?'Selesai':e.started_at?'Berjalan':e.starts_at||e.scheduled_at?'Terjadwal':'Tersedia';const fmt=d=>{if(!d)return '';const date=new Date(d);return Number.isNaN(date.getTime())?'':date.toLocaleString('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});};const count=label=>label==='Semua'?total:exams.filter(e=>status(e)===label).length;const buttons=new Map();const draw=()=>{items.replaceChildren();const query=search.value.trim().toLowerCase();const matches=exams.filter(e=>(filter==='Semua'||status(e)===filter)&&String(e.title||'').toLowerCase().includes(query));if(!matches.length){const p=document.createElement('p');p.className='muted';p.textContent='Tidak ada ujian yang sesuai pencarian atau filter.';items.append(p);return;}matches.forEach(e=>{const item=document.createElement('div');item.className='exam-item exam-item-detailed';const left=document.createElement('div');const name=document.createElement('div');name.className='exam-item-title';name.textContent=e.title||'Ujian';const meta=document.createElement('div');meta.className='exam-item-meta';meta.textContent=[e.question_count!=null?e.question_count+' soal':null,e.duration_minutes?e.duration_minutes+' menit':null].filter(Boolean).join(' · ')||'Informasi ujian';left.append(name,meta);const dateText=e.submitted_at?fmt(e.submitted_at):fmt(e.starts_at||e.scheduled_at);if(dateText){const date=document.createElement('small');date.className='exam-item-date';date.textContent=(e.submitted_at?'Dikumpulkan: ':'Jadwal: ')+dateText;left.append(date);}const right=document.createElement('div');right.className='exam-item-actions';const badge=document.createElement('span');badge.className='exam-tag'+(status(e)==='Selesai'?' done':status(e)==='Terjadwal'?' scheduled':'');badge.textContent=e.submitted_at?'Terkumpul':status(e);right.append(badge);const action=document.createElement('button');action.type='button';action.className='exam-detail-action';action.textContent=e.submitted_at?'Lihat Hasil':e.started_at?'Lanjutkan Ujian':'Mulai Ujian';action.title=e.submitted_at?'Buka halaman hasil belajar':'Kerjakan ujian di Teman Belajar';action.onclick=()=>{if(e.submitted_at)switchPortalPage(2,false);else openTemanExam(e);};right.append(action);item.append(left,right);items.append(item);});};['Semua','Tersedia','Selesai','Terjadwal','Berjalan'].forEach(label=>{const button=document.createElement('button');button.type='button';button.className='exam-filter'+(label===filter?' active':'');button.textContent=label+' ('+count(label)+')';button.onclick=()=>{filter=label;buttons.forEach((b,k)=>b.classList.toggle('active',k===label));draw();};buttons.set(label,button);filters.append(button);});search.addEventListener('input',draw);draw();const progressTitle=document.createElement('h2');progressTitle.textContent='Progres Ujian';aside.append(progressTitle);const subtitle=document.createElement('p');subtitle.className='muted';subtitle.textContent='Dari total '+total+' ujian';aside.append(subtitle);const ring=document.createElement('div');ring.className='exam-progress-ring';ring.style.setProperty('--completed',total?done/total*100+'%':'0%');ring.style.setProperty('--available',total?(done+Math.max(0,total-done-scheduled))/total*100+'%':'0%');const hole=document.createElement('div');hole.className='exam-progress-hole';const num=document.createElement('strong');num.textContent=String(total);const totalLabel=document.createElement('small');totalLabel.textContent='Total Ujian';hole.append(num,totalLabel);ring.append(hole);aside.append(ring);const legend=document.createElement('div');legend.className='exam-progress-legend';[['Selesai',done,'#0b3d86'],['Tersedia',Math.max(0,total-done-scheduled),'#1583ff'],['Terjadwal',scheduled,'#9ed9ff']].forEach(([label,count,color])=>{const row=document.createElement('div');const left=document.createElement('span');const dot=document.createElement('i');dot.style.background=color;left.append(dot,document.createTextNode(label));const val=document.createElement('strong');val.textContent=String(count);row.append(left,val);legend.append(row);});aside.append(legend);const notice=document.createElement('div');notice.className='exam-progress-note';notice.textContent='Kerjakan dengan jujur. Pengerjaan ujian di portal ini akan diaktifkan setelah integrasi jawaban selesai diuji.';aside.append(notice);
 }catch(e){const msg='Daftar ujian belum dapat dimuat: '+(e.message||'Periksa koneksi.');if(target.isConnected)target.textContent=msg;}}
