@@ -323,6 +323,21 @@ section{scroll-margin-top:18px}
 .teman-belajar-login--parent{background:#eaf3ff;color:#123c71!important;border:1px solid #b9d7fa}
 .teman-belajar-login--parent:hover{background:#d8eaff}
 @media(max-width:480px){.teman-belajar-logins{display:grid;grid-template-columns:1fr 1fr;gap:8px}.teman-belajar-login{padding:10px 8px;font-size:13px}}
+
+/* Layout refinement: responsive across phone, tablet, desktop and ultrawide */
+html{scroll-padding-top:88px}
+body{max-width:100%;overflow-x:clip}
+img,video,svg,iframe{max-width:100%}
+img,video{height:auto}
+.wrap{width:min(100% - 40px,1240px);max-width:1240px;margin-inline:auto}
+.hero-grid,.grid{min-width:0}
+.hero-grid>*,.grid>*,.hero-copy,.hero-visual{min-width:0}
+.hero h1,.hero-copy h1,h1,h2,h3{overflow-wrap:break-word;text-wrap:balance}
+section[id]{scroll-margin-top:88px}
+@media(min-width:1600px){.wrap{width:min(100% - 80px,1280px);max-width:1280px}}
+@media(max-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media(max-width:760px){.wrap{width:calc(100% - 32px)}.hero-grid{grid-template-columns:minmax(0,1fr)}.hero-grid>*{width:100%;max-width:100%}section[id]{scroll-margin-top:72px}}
+@media(max-width:480px){.wrap{width:calc(100% - 28px)}.hero-copy h1{font-size:clamp(1.9rem,9vw,3rem)}.grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
