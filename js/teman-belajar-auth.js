@@ -171,9 +171,9 @@ async function openTemanExam(exam){
   function changed(id,value){examAnswers[id]=value;examDirty=true;status.textContent='Ada jawaban yang belum tersimpan.';updateProgress();}
   function renderQuestion(){
    questionCard.replaceChildren();const q=questions[index];if(!q){questionCard.append(el('p','','Belum ada soal untuk ujian ini.'));return;}
-   const meta=el('div','teman-exam-qmeta');meta.append(el('strong','','Soal '+(index+1)+' dari '+questions.length),el('span','',q.question_type==='mcq'?'Pilihan Ganda':'Uraian'));questionCard.append(meta,el('h3','teman-exam-prompt',q.prompt||''));
+   const meta=el('div','teman-exam-qmeta');meta.append(el('strong','','Soal '+(index+1)+' dari '+questions.length),el('span','',q.question_type==='mcq'?'Pilihan Ganda':'Uraian'));const prompt=el('div','teman-exam-prompt');window.JeniusQuestionMedia.render(prompt,q.prompt||'');questionCard.append(meta,prompt);
    if(q.question_type==='mcq'){
-    (q.options||[]).forEach((option,j)=>{const letter=String.fromCharCode(65+j),label=el('label','teman-exam-option'),input=el('input');input.type='radio';input.name='teman-q-'+q.id;input.value=letter;input.checked=examAnswers[q.id]===letter;input.onchange=()=>changed(q.id,letter);label.append(input,el('b','teman-exam-letter',letter),el('span','',option));questionCard.append(label);});
+    (q.options||[]).forEach((option,j)=>{const letter=String.fromCharCode(65+j),label=el('label','teman-exam-option'),input=el('input');input.type='radio';input.name='teman-q-'+q.id;input.value=letter;input.checked=examAnswers[q.id]===letter;input.onchange=()=>changed(q.id,letter);const copy=el('span');window.JeniusQuestionMedia.render(copy,option,'Gambar pilihan '+letter);label.append(input,el('b','teman-exam-letter',letter),copy);questionCard.append(label);});
    }else{const area=el('textarea','teman-exam-essay');area.rows=7;area.maxLength=10000;area.value=examAnswers[q.id]||'';area.oninput=()=>changed(q.id,area.value);questionCard.append(area);}
    const controls=el('div','teman-exam-step-actions'),prev=el('button','','‹ Sebelumnya'),next=el('button','primary','Berikutnya ›');prev.type=next.type='button';prev.disabled=index===0;next.disabled=index===questions.length-1;prev.onclick=()=>{index--;renderQuestion();};next.onclick=()=>{index++;renderQuestion();};controls.append(prev,next);questionCard.append(controls);updateProgress();
   }
@@ -227,4 +227,3 @@ document.querySelectorAll('[data-toggle-password]').forEach(button=>button.addEv
 $('logout').onclick=async()=>{if(client)await client.auth.signOut();client=null;showLanding();};
 (async()=>{try{const role=new URLSearchParams(location.search).get('role')==='parent'?'parent':'murid';client=await getClient(role);const session=await client.auth.getSession();if(session.data.session){try{await openDashboard(role);}catch(e){await client.auth.signOut();showLanding();}}}catch(e){/* Allow both forms to remain visible until user submits. */}})();
 })();
-
